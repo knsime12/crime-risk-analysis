@@ -115,7 +115,7 @@ def save_result(df, output_path):
 
 
 def main():
-    input_path = "total_df.csv"
+    input_path = "crime_raw_data.csv"
     output_path = "crime_stats.csv"
 
     df = load_data(input_path)
