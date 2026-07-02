@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- SAFE TRIP - 신고 게시판 목록 (필터·페이징) -->
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>신고 게시판 - SafeTrip</title>
+  <link rel="stylesheet"
+        th:href="@{/css/index.css}">
+  <link rel="stylesheet"
+        th:href="@{/css/board.css}">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar('board')}"></div>
+
+<main class="board-page">
+
+  <div th:if="${errorMessage}"
+       class="auth-error-banner"
+       th:text="${errorMessage}"></div>
+
+  <section class="board-title">
+    <div>
+      <p>COMMUNITY REPORT</p>
+      <h1>신고 게시판</h1>
+      <span>위험 장소, 불안 요소, 안전 관련 정보를 공유하는 공간입니다.</span>
+    </div>
+
+    <a th:href="@{/board/write}" class="write-btn">
+      <i data-lucide="pen-line"></i>
+      글쓰기
+    </a>
+  </section>
+
+  <section class="board-toolbar">
+    <div class="tabs">
+      <a th:href="@{/board}" class="active"><button class="active">전체</button></a>
+      <a th:href="@{/board(category='위험 지역')}">
+        <button>위험 지역</button>
+      </a>
+
+      <a th:href="@{/board(category='어두운 골목')}">
+        <button>어두운 골목</button>
+      </a>
+
+      <a th:href="@{/board(category='CCTV 부족')}">
+        <button>CCTV 부족</button>
+      </a>
+
+      <a th:href="@{/board(category='수상한 사람')}">
+        <button>수상한 사람</button>
+      </a>
+
+      <a th:href="@{/board(category='교통 위험')}">
+        <button>교통 위험</button>
+      </a>
+
+      <a th:href="@{/board(category='기타')}">
+        <button>기타</button>
+      </a>
+    </div>
+
+    <form th:action="@{/board}"
+          method="get"
+          class="search-box-board region-search-board">
+
+      <select name="sido" id="searchSido">
+        <option value="">시/도</option>
+        <option th:each="s : ${sidoList}"
+                th:value="${s}"
+                th:text="${s}"
+                th:selected="${s == selectedSido}">
+        </option>
+      </select>
+
+      <select name="sigungu" id="searchSigungu">
+        <option value="">시군구</option>
+        <option th:each="r : ${regions}"
+                th:value="${r.sigungu}"
+                th:text="${r.sigungu}"
+                th:data-sido="${r.sido}"
+                th:selected="${r.sigungu == selectedSigungu}">
+        </option>
+      </select>
+
+      <button type="submit" title="지역 검색">
+        <i data-lucide="map-pin"></i>
+      </button>
+
+      <input type="text"
+             name="keyword"
+             placeholder="제목 검색"
+             th:value="${param.keyword}">
+
+      <button type="submit" title="제목 검색">
+        <i data-lucide="search"></i>
+      </button>
+
+    </form>
+  </section>
+
+  <section class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>카테고리</th>
+          <th class="title-col">제목</th>
+          <th>지역</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+      <tr th:each="report : ${reports.content}">
+
+        <td th:text="${report.id}"></td>
+
+        <td>
+        <span class="badge danger"
+              th:text="${report.category}">
+        </span>
+        </td>
+
+        <td class="post-title">
+
+          <a th:href="@{/board/{id}(id=${report.id})}"
+             th:text="${report.title}">
+          </a>
+
+        </td>
+
+        <td th:text="${report.regionName}"></td>
+
+        <td th:text="${report.nickname}"></td>
+
+        <td th:text="${report.createdAt}"></td>
+
+        <td th:text="${report.views}"></td>
+
+      </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <div class="pagination">
+
+    <a th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+       th:href="@{/board(page=${i}, sido=${selectedSido}, sigungu=${selectedSigungu}, keyword=${param.keyword}, category=${param.category})}">
+
+      <button th:text="${i + 1}"
+              th:classappend="${i == currentPage} ? 'active'">
+      </button>
+
+    </a>
+
+  </div>
+
+</main>
+
+<script>
+  lucide.createIcons();
+
+  const searchSido = document.getElementById("searchSido");
+  const searchSigungu = document.getElementById("searchSigungu");
+
+  if (searchSido && searchSigungu) {
+    const searchSigunguOptions = Array.from(
+      searchSigungu.querySelectorAll("option[data-sido]")
+    ).map(option => option.cloneNode(true));
+
+    function filterSearchSigungu() {
+      const selectedSido = searchSido.value;
+      const currentValue = searchSigungu.value;
+
+      searchSigungu.innerHTML = '<option value="">시군구</option>';
+
+      searchSigunguOptions.forEach(option => {
+        if (!selectedSido || option.dataset.sido === selectedSido) {
+          searchSigungu.appendChild(option.cloneNode(true));
+        }
+      });
+
+      searchSigungu.value = currentValue;
+    }
+
+    searchSido.addEventListener("change", filterSearchSigungu);
+
+    if (searchSido.value) {
+      filterSearchSigungu();
+    }
+  }
+</script>
+
+</body>
+</html>
