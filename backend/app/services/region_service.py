@@ -6,6 +6,13 @@ import pandas as pd
 from app.schemas import RegionSummary
 
 
+def to_int(value) -> int:
+    if pd.isna(value):
+        return 0
+    
+    return int(float(value))
+
+
 DATA_PATH = (
     Path(__file__).resolve().parents[3]
     / "legacy_ui"
@@ -28,14 +35,14 @@ def load_regions() -> list[RegionSummary]:
         
         regions.append(
             RegionSummary(
-                region_id = f"{sido}-{sigungu}",
+                region_id=f"{sido}-{sigungu}",
                 sido=sido,
                 sigungu=sigungu,
                 risk_score=float(row["risk_score"]),
                 region_type=str(row["region_type"]),
-                cctv_count=int(row["cctv_count"]),
-                police_station_count=int(row["경찰서"]),
-                police_box_count=int(row["파출소"])
+                cctv_count=to_int(row["cctv_count"]),
+                police_station_count=to_int(row["경찰서"]),
+                police_box_count=to_int(row["파출소"])
             )
         )
         
