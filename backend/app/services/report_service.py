@@ -8,21 +8,12 @@ from app.schemas import (
     InfraSummary,
     RegionReport,
 )
-
-
-DATA_PATH = (
-    Path(__file__).resolve().parents[3]
-    / "legacy_ui"
-    / "travel-safe-platform-main"
-    / "src"
-    / "main"
-    / "resources"
-    / "data.csv"
-)
+from app.utils import to_int, to_float
+from app.config import REGION_DATA_PATH
 
 
 def get_report(region_id: str) -> RegionReport:
-    df = pd.read_csv(DATA_PATH, encoding="utf-8")
+    df = pd.read_csv(REGION_DATA_PATH, encoding="utf-8")
     
     for _, row in df.iterrows():
         sido = str(row["시도"])
@@ -36,21 +27,21 @@ def get_report(region_id: str) -> RegionReport:
             region_id=current_region_id,
             sido=sido,
             sigungu=sigungu,
-            risk_score=float(row["risk_score"]),
+            risk_score=to_float(row["risk_score"]),
             region_type=str(row["region_type"]),
             major_crime_type=str(row["major_crime_type"]),
-            crime_count=int(row["crime_count"]),
+            crime_count=to_int(row["crime_count"]),
             crime_ratios=CrimeRatios(
-                theft=float(row["절도_비율"]),
-                violence=float(row["폭력_비율"]),
-                sexual_assault=float(row["성범죄_비율"]),
-                robbery=float(row["강도_비율"]),
-                murder=float(row["살인_비율"]),
+                theft=to_float(row["절도_비율"]),
+                violence=to_float(row["폭력_비율"]),
+                sexual_assault=to_float(row["성범죄_비율"]),
+                robbery=to_float(row["강도_비율"]),
+                murder=to_float(row["살인_비율"]),
             ),
             infra=InfraSummary(
-                cctv_count=int(row["cctv_count"]),
-                police_station_count=int(row["경찰서"]),
-                police_box_count=int(row["파출소"]),
+                cctv_count=to_int(row["cctv_count"]),
+                police_station_count=to_int(row["경찰서"]),
+                police_box_count=to_int(row["파출소"]),
             ),
         )
         

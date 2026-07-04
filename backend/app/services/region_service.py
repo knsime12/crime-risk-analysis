@@ -1,32 +1,15 @@
 from functools import lru_cache
-from pathlib import Path
 
 import pandas as pd
 
 from app.schemas import RegionSummary
-
-
-def to_int(value) -> int:
-    if pd.isna(value):
-        return 0
-    
-    return int(float(value))
-
-
-DATA_PATH = (
-    Path(__file__).resolve().parents[3]
-    / "legacy_ui"
-    / "travel-safe-platform-main"
-    / "src"
-    / "main"
-    / "resources"
-    / "data.csv"
-)
+from app.utils import to_int
+from app.config import REGION_DATA_PATH
 
 
 @lru_cache
 def load_regions() -> list[RegionSummary]:
-    df = pd.read_csv(DATA_PATH, encoding="utf-8")
+    df = pd.read_csv(REGION_DATA_PATH, encoding="utf-8")
     regions = []
     
     for _, row in df.iterrows():
