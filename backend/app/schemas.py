@@ -1,3 +1,5 @@
+from re import S
+
 from pydantic import BaseModel
 
 class RegionSummary(BaseModel):
@@ -55,3 +57,16 @@ class MapRegionResponse(BaseModel):
     police_station_count: int
     police_box_count: int
     police_stations: list[PoliceStationSummary]
+
+
+class GuideItem(BaseModel):
+    icon: str
+    title: str
+    text: str
+
+
+class SafetyGuide(BaseModel):
+    type: str
+    title: str
+    description: str
+    items: list[GuideItem]

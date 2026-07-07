@@ -6,6 +6,7 @@ from app.routers import (
     maps,
     regions,
     reports,
+    guides,
 )
 
 
@@ -25,3 +26,4 @@ app.include_router(health.router)
 app.include_router(regions.router)
 app.include_router(reports.router)
 app.include_router(maps.router)
+app.include_router(guides.router)
