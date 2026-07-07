@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import Column, Float, ForeignKey, Integer, String
 
 from app.database import Base
 
@@ -32,3 +32,24 @@ class RegionSafetyStat(Base):
     cctv_count = Column(Integer, nullable=False, default=0)
     police_station_count = Column(Integer, nullable=False, default=0)
     police_box_count = Column(Integer, nullable=False, default=0)
+
+
+class PoliceStation(Base):
+    __tablename__ = "police_stations"
+
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    region_id = Column(
+        String,
+        ForeignKey("region_safety_stats.region_id"),
+        nullable=False,
+        index=True,
+    )
+
+    sido = Column(String, nullable=False, index=True)
+    sigungu = Column(String, nullable=False, index=True)
+    name = Column(String, nullable=False)
+    station_type = Column(String, nullable=False)
+
+    longitude = Column(Float, nullable=False)
+    latitude = Column(Float, nullable=False)

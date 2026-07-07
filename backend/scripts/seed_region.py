@@ -8,9 +8,9 @@ BACKEND_DIR = Path(__file__).resolve().parents[1]
 sys.path.append(str(BACKEND_DIR))
 
 
-from app.config import DATA_DIR, REGION_DATA_PATH
+from app.config import DATA_DIR, REGION_DATA_PATH, POLICE_DATA_PATH
 from app.database import Base, SessionLocal, engine
-from app.models import RegionSafetyStat
+from app.models import RegionSafetyStat, PoliceStation
 from app.utils import to_float, to_int
 
 
@@ -22,8 +22,10 @@ def seed_regions():
     
     db = SessionLocal()
     try:
+        db.query(PoliceStation).delete()
         db.query(RegionSafetyStat).delete()
         
+        # region data insert
         for _, row in df.iterrows():
             sido = str(row["시도"])
             sigungu = str(row["시군구"])
@@ -51,6 +53,25 @@ def seed_regions():
                     cctv_count=to_int(row["cctv_count"]),
                     police_station_count=to_int(row["경찰서"]),
                     police_box_count=to_int(row["파출소"]),
+                )
+            )
+
+        # police data insert
+        police_df = pd.read_csv(POLICE_DATA_PATH, encoding="utf-8")
+
+        for _, row in police_df.iterrows():
+            sido = str(row["sido"])
+            sigungu = str(row["sigungu"])
+
+            db.add(
+                PoliceStation(
+                    region_id=f"{sido}-{sigungu}",
+                    sido=sido,
+                    sigungu=sigungu,
+                    name=str(row["name"]),
+                    station_type=str(row["type"]),
+                    longitude=to_float(row["longitude"]),
+                    latitude=to_float(row["latitude"]),
                 )
             )
             
