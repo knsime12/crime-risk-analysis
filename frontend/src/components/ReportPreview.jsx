@@ -1,4 +1,4 @@
-export default function ReportPreview({ report, isLoading, errorMessage }) {
+export default function ReportPreview({ report, isLoading, errorMessage, onViewMap }) {
     if (isLoading) {
         return (
             <section id="safety-report" className="report-preview empty">
@@ -53,6 +53,12 @@ export default function ReportPreview({ report, isLoading, errorMessage }) {
             <div className="crime-ratio-list">
                 <h3>주요 범죄 유형</h3>
                 <p>{report.major_crime_type}</p>
+            </div>
+
+            <div className="report-actions">
+                <button type="button" onClick={onViewMap}>
+                    지도에서 보기
+                </button>
             </div>
         </section>
     )

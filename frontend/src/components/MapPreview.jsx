@@ -3,7 +3,7 @@ import KakaoMap from './KakaoMap'
 export default function MapPreview({ mapData, isLoading, errorMessage }) {
     if (isLoading) {
         return (
-            <section className="map-preview empty">
+            <section id="safety-map" className="map-preview empty">
                 <p>지도 데이터를 불러오는 중입니다.</p>
             </section>
         )
@@ -11,7 +11,7 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
 
     if (errorMessage) {
         return (
-            <section className="map-preview empty">
+            <section id="safety-map" className="map-preview empty">
                 <p>{errorMessage}</p>
             </section>
         )
@@ -24,7 +24,7 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
     const stations = mapData.police_stations.slice(0, 5)
 
     return (
-        <section className="map-preview">
+        <section id="safety-map" className="map-preview">
 
             <div className="section-heading">
 

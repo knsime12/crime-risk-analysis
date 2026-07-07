@@ -121,6 +121,7 @@ export default function App() {
         report={selectedReport}
         isLoading={isReportLoading}
         errorMessage={reportError}
+        onViewMap={() => scrollToSection('safety-map')}
       />
 
       {(mapData || isMapLoading || mapError) && (

@@ -424,3 +424,17 @@
 .kakao-map-placeholder span {
   margin-top: 8px;
 }
+
+.report-actions {
+  margin-top: 24px;
+}
+
+.report-actions button {
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2563eb;
+  cursor: pointer;
+}
