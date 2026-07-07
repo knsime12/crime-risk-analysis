@@ -438,3 +438,50 @@
   background: #2563eb;
   cursor: pointer;
 }
+
+.guide-card {
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.guide-card:hover {
+  background: #eef6ff;
+}
+
+.guide-detail {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.guide-detail span {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.guide-detail h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.guide-detail > p {
+  margin: 10px 0 0;
+  color: #64748b;
+}
+
+.guide-detail ul {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding-left: 18px;
+}
+
+.guide-detail li p {
+  margin: 6px 0 0;
+  color: #64748b;
+}

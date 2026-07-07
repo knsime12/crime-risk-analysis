@@ -31,3 +31,7 @@ export function getMapRegion(regionId) {
 export function getGuides() {
     return request(`/api/guides`)
 }
+
+export function getGuideDetail(guideType) {
+    return request(`/api/guides/${encodeURIComponent(guideType)}`)
+}

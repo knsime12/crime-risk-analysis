@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { getGuides } from '../api/client'
+import { getGuides, getGuideDetail } from '../api/client'
 
 export default function GuidePreview() {
     const [guides, setGuides] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState('')
+
+    const [selectedGuide, setSelectedGuide] = useState(null)
+    const [detailErrorMessage, setDetailErrorMessage] = useState('')
 
     useEffect(() => {
         async function loadGuides() {
@@ -24,6 +27,17 @@ export default function GuidePreview() {
         loadGuides()
     }, [])
 
+    async function handleSelectGuide(guideType) {
+        try {
+            setDetailErrorMessage('')
+
+            const data = await getGuideDetail(guideType)
+            setSelectedGuide(data)
+        } catch {
+            setDetailErrorMessage('예방 가이드 상세 정보를 불러오지 못했습니다.')
+        }
+    }
+
     return (
         <section className="guide-preview">
             <div className="section-heading">
@@ -38,7 +52,12 @@ export default function GuidePreview() {
             {!isLoading && !errorMessage && (
                 <div className="guide-grid">
                     {guides.map((guide) => (
-                        <article className="guide-card" key={guide.type}>
+                        <button 
+                            type="button"
+                            className="guide-card" 
+                            key={guide.type}
+                            onClick={() => handleSelectGuide(guide.type)}
+                        >
                             <span>{guide.type}</span>
                             <h3>{guide.title}</h3>
                             <p>{guide.description}</p>
@@ -50,10 +69,31 @@ export default function GuidePreview() {
                                     </li>
                                 ))}
                             </ul>
-                        </article>
+                        </button>
                     ))}
                 </div>
             )}
+
+            {detailErrorMessage && (
+                    <p className="status-message error">{detailErrorMessage}</p>
+                )}
+
+                {selectedGuide && (
+                    <article className="guide-detail">
+                        <span>{selectedGuide.type}</span>
+                        <h3>{selectedGuide.title}</h3>
+                        <p>{selectedGuide.description}</p>
+
+                        <ul>
+                            {selectedGuide.items.map((item) => (
+                                <li key={`${selectedGuide.type}-${item.title}`}>
+                                    <strong>{item.title}</strong>
+                                    <p>{item.description}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </article>
+                )}
         </section>
     )
 }
