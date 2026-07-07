@@ -1,3 +1,5 @@
+import KakaoMap from './KakaoMap'
+
 export default function MapPreview({ mapData, isLoading, errorMessage }) {
     if (isLoading) {
         return (
@@ -31,6 +33,11 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
                 <p>카카오맵 연동 전 경찰 시설 좌표 데이터를 먼저 확인합니다.</p>
 
             </div>
+
+            <KakaoMap
+                regionLabel={mapData.region_label}
+                stations={mapData.police_stations}
+            />
 
             <div className="map-summary">
 
