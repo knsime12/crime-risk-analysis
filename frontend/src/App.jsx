@@ -23,6 +23,8 @@ export default function App() {
     setMapError('')
     setSelectedReport(null)
     setMapData(null)
+
+    scrollToSection('safety-report')
     
     const [reportResult, mapResult] = await Promise.allSettled([
       getRegionReport(regionId),
