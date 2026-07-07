@@ -17,26 +17,33 @@ export default function App() {
   const [isMapLoading, setIsMapLoading] = useState(false)
 
   async function handleSelectRegion(regionId) {
-    try {
       setIsReportLoading(true)
       setIsMapLoading(true)
       setReportError('')
       setMapError('')
+      setSelectedReport(null)
+      setMapData(null)
       
-      const report = await getRegionReport(regionId)
-      setSelectedReport(report)
+      const [reportResult, mapResult] = await Promise.allSettled([
+        getRegionReport(regionId),
+        getMapRegion(regionId),
+      ])
 
-      const mapRegion = await getMapRegion(regionId)
-      setMapData(mapRegion)
-    } catch {
-      setReportError('안전 리포트를 불러오지 못했습니다.')
-      setMapError('지도 데이터를 불러오지 못했습니다.')
-    } finally {
+      if (reportResult.status === 'fulfilled') {
+        setSelectedReport(reportResult.value)
+      } else {
+        setReportError('안전 리포트를 불러오지 못했습니다.')
+      }
+
+      if (mapResult.status === 'fulfilled') {
+        setMapData(mapResult.value)
+      } else {
+        setMapError('지도 데이터를 불러오지 못했습니다.')
+      }
+
       setIsReportLoading(false)
       setIsMapLoading(false)
-    }
-    
-  }
+    } 
 
   return (
     <main className="app">
