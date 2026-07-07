@@ -46,7 +46,7 @@ export default function GuidePreview() {
     }
 
     return (
-        <section className="guide-preview">
+        <section id="safety-guide" className="guide-preview">
             <div className="section-heading">
                 <p className="eyebrow">SAFETY GUIDE</p>
                 <h2>범죄 유형별 예방 가이드</h2>
@@ -86,7 +86,7 @@ export default function GuidePreview() {
             )}
 
             {detailErrorMessage && (
-                    <p className="status-message error">{detailErrorMessage}</p>
+                <p className="status-message error">{detailErrorMessage}</p>
             )}
 
             {selectedGuide && !isDetailLoading && (

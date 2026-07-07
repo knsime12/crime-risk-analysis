@@ -122,6 +122,7 @@ export default function App() {
         isLoading={isReportLoading}
         errorMessage={reportError}
         onViewMap={() => scrollToSection('safety-map')}
+        onViewGuide={() => scrollToSection('safety-guide')}
       />
 
       {(mapData || isMapLoading || mapError) && (

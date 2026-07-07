@@ -426,6 +426,9 @@
 }
 
 .report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 24px;
 }
 
@@ -489,4 +492,9 @@
 .guide-card.selected {
   outline: 2px solid #2563eb;
   background: #eef6ff;
+}
+
+.report-actions button.secondary-action {
+  color: #1e3a8a;
+  background: #dbeafe;
 }

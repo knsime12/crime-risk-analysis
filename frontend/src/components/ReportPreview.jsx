@@ -1,4 +1,4 @@
-export default function ReportPreview({ report, isLoading, errorMessage, onViewMap }) {
+export default function ReportPreview({ report, isLoading, errorMessage, onViewMap,onViewGuide }) {
     if (isLoading) {
         return (
             <section id="safety-report" className="report-preview empty">
@@ -58,6 +58,10 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
             <div className="report-actions">
                 <button type="button" onClick={onViewMap}>
                     지도에서 보기
+                </button>
+
+                <button type="button" className="secondary-action" onClick={onViewGuide}>
+                    예방 가이드 보기
                 </button>
             </div>
         </section>
