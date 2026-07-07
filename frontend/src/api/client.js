@@ -23,3 +23,7 @@ export function searchRegions(keyword) {
 export function getRegionReport(regionId) {
     return request(`/api/reports/${encodeURIComponent(regionId)}`)
 }
+
+export function getMapRegion(regionId) {
+    return request(`/api/map/regions/${encodeURIComponent(regionId)}`)
+}

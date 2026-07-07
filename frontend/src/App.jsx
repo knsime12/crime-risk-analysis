@@ -2,25 +2,37 @@ import './App.css'
 import RegionSearch from './components/RegionSearch'
 
 import { useState } from 'react'
-import { getRegionReport } from './api/client'
+import { getRegionReport, getMapRegion } from './api/client'
 import ReportPreview from './components/ReportPreview'
+import MapPreview from './components/MapPreview'
 
 export default function App() {
   const [selectedReport, setSelectedReport] = useState(null)
   const [reportError, setReportError] = useState('')
   const [isReportLoading, setIsReportLoading] = useState(false)
+  
+  const [mapData, setMapData] = useState(null)
+  const [mapError, setMapError] = useState('')
+  const [isMapLoading, setIsMapLoading] = useState(false)
 
   async function handleSelectRegion(regionId) {
     try {
       setIsReportLoading(true)
+      setIsMapLoading(true)
       setReportError('')
-
+      setMapError('')
+      
       const report = await getRegionReport(regionId)
       setSelectedReport(report)
+
+      const mapRegion = await getMapRegion(regionId)
+      setMapData(mapRegion)
     } catch {
       setReportError('안전 리포트를 불러오지 못했습니다.')
+      setMapError('지도 데이터를 불러오지 못했습니다.')
     } finally {
       setIsReportLoading(false)
+      setIsMapLoading(false)
     }
     
   }
@@ -85,6 +97,14 @@ export default function App() {
           report={selectedReport}
           isLoading={isReportLoading}
           errorMessage={reportError}
+        />
+      )}
+
+      {(mapData || isMapLoading || mapError) && (
+        <MapPreview
+          mapData={mapData}
+          isLoading={isMapLoading}
+          errorMessage={mapError}
         />
       )}
 
