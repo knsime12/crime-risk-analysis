@@ -27,3 +27,7 @@ export function getRegionReport(regionId) {
 export function getMapRegion(regionId) {
     return request(`/api/map/regions/${encodeURIComponent(regionId)}`)
 }
+
+export function getGuides() {
+    return request(`/api/guides`)
+}

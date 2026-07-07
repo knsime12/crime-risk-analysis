@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { getRegionReport, getMapRegion } from './api/client'
 import ReportPreview from './components/ReportPreview'
 import MapPreview from './components/MapPreview'
+import GuidePreview from './components/GuidePreview'
 
 export default function App() {
   const [selectedReport, setSelectedReport] = useState(null)
@@ -107,6 +108,8 @@ export default function App() {
           errorMessage={mapError}
         />
       )}
+
+      <GuidePreview />
 
     </main>
   )
