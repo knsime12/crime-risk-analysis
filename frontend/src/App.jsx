@@ -45,8 +45,8 @@ export default function App() {
     setIsMapLoading(false)
   }
   
-  function scrollToSection(sectionid) {
-    document.getElementById(sectionid)?.scrollIntoView({
+  function scrollToSection(sectionId) {
+    document.getElementById(sectionId)?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     })
@@ -115,13 +115,11 @@ export default function App() {
 
       <RegionSearch onSelectRegion={handleSelectRegion} />
 
-      {(selectedReport || isReportLoading || reportError) && (
-        <ReportPreview 
-          report={selectedReport}
-          isLoading={isReportLoading}
-          errorMessage={reportError}
-        />
-      )}
+      <ReportPreview 
+        report={selectedReport}
+        isLoading={isReportLoading}
+        errorMessage={reportError}
+      />
 
       {(mapData || isMapLoading || mapError) && (
         <MapPreview

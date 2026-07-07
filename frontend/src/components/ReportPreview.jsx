@@ -1,7 +1,7 @@
-export default function ReportPreview({ report, isLoading, errorMessage}) {
+export default function ReportPreview({ report, isLoading, errorMessage }) {
     if (isLoading) {
         return (
-            <section className="report-preview empty">
+            <section id="safety-report" className="report-preview empty">
                 <p>안전 리포트를 불러오는 중입니다.</p>
             </section>
         )
@@ -9,7 +9,7 @@ export default function ReportPreview({ report, isLoading, errorMessage}) {
 
     if (errorMessage) {
         return (
-            <section className="report-preview empty">
+            <section id="safety-report" className="report-preview empty">
                 <p>{errorMessage}</p>
             </section>
         )
@@ -17,7 +17,7 @@ export default function ReportPreview({ report, isLoading, errorMessage}) {
 
     if (!report) {
         return (
-            <section className="report-preview empty">
+            <section id="safety-report" className="report-preview empty">
                 <p>지역을 선택하면 안전 리포트가 표시됩니다.</p>
             </section>
         )
