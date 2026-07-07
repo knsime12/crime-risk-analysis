@@ -21,11 +21,12 @@ def seed_regions():
     df = pd.read_csv(REGION_DATA_PATH, encoding="utf-8")
     
     db = SessionLocal()
+    
     try:
         db.query(PoliceStation).delete()
         db.query(RegionSafetyStat).delete()
         
-        # region data insert
+        # 지역 데이터 저장
         for _, row in df.iterrows():
             sido = str(row["시도"])
             sigungu = str(row["시군구"])
@@ -56,7 +57,7 @@ def seed_regions():
                 )
             )
 
-        # police data insert
+        # 경찰 인프라 데이터 저장
         police_df = pd.read_csv(POLICE_DATA_PATH, encoding="utf-8")
 
         for _, row in police_df.iterrows():
