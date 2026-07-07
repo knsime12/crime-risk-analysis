@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getRegions, searchRegions} from '../api/client'
 
-export default function RegionSearch() {
+export default function RegionSearch({ onSelectRegion }) {
     const [keyword, setKeyword] = useState('')
     const [regions, setRegions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -77,7 +77,12 @@ export default function RegionSearch() {
 
                     {regions.map((region) => (
 
-                        <article className="region-card" key={region.region_id}>
+                        <button
+                            type="button" 
+                            className="region-card" 
+                            key={region.region_id}
+                            onClick={() => onSelectRegion(region.region_id)}    
+                        >
 
                             <div>
 
@@ -91,7 +96,7 @@ export default function RegionSearch() {
 
                             <strong>{Math.round(region.risk_score)}점</strong>
 
-                        </article>
+                        </button>
 
                     ))}
 

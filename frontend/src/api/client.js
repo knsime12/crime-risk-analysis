@@ -19,3 +19,7 @@ export function searchRegions(keyword) {
 
     return request(`/api/regions/search?keyword=${query}`)
 }
+
+export function getRegionReport(regionId) {
+    return request(`/api/reports/${encodeURIComponent(regionId)}`)
+}
