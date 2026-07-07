@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import (
     health,
+    maps,
     regions,
     reports,
 )
@@ -23,3 +24,4 @@ app.add_middleware(
 app.include_router(health.router)
 app.include_router(regions.router)
 app.include_router(reports.router)
+app.include_router(maps.router)

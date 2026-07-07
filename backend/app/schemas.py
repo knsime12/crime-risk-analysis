@@ -35,3 +35,23 @@ class RegionReport(BaseModel):
     crime_count: int
     crime_ratios: CrimeRatios
     infra: InfraSummary
+
+
+class PoliceStationSummary(BaseModel):
+    name: str
+    type: str
+    longitude: float
+    latitude: float
+
+
+class MapRegionResponse(BaseModel):
+    region_id: str
+    region_label: str
+    sido: str
+    sigungu: str
+    region_type: str
+    risk_score: float
+    cctv_count: int
+    police_station_count: int
+    police_box_count: int
+    police_stations: list[PoliceStationSummary]
