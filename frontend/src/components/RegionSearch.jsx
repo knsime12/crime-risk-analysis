@@ -45,7 +45,7 @@ export default function RegionSearch({ onSelectRegion }) {
     }
 
     return (
-        <section className="region-search-section">
+        <section id="region-search" className="region-search-section">
 
             <div className="section-heading">
 

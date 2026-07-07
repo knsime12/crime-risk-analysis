@@ -17,33 +17,40 @@ export default function App() {
   const [isMapLoading, setIsMapLoading] = useState(false)
 
   async function handleSelectRegion(regionId) {
-      setIsReportLoading(true)
-      setIsMapLoading(true)
-      setReportError('')
-      setMapError('')
-      setSelectedReport(null)
-      setMapData(null)
-      
-      const [reportResult, mapResult] = await Promise.allSettled([
-        getRegionReport(regionId),
-        getMapRegion(regionId),
-      ])
+    setIsReportLoading(true)
+    setIsMapLoading(true)
+    setReportError('')
+    setMapError('')
+    setSelectedReport(null)
+    setMapData(null)
+    
+    const [reportResult, mapResult] = await Promise.allSettled([
+      getRegionReport(regionId),
+      getMapRegion(regionId),
+    ])
 
-      if (reportResult.status === 'fulfilled') {
-        setSelectedReport(reportResult.value)
-      } else {
-        setReportError('안전 리포트를 불러오지 못했습니다.')
-      }
+    if (reportResult.status === 'fulfilled') {
+      setSelectedReport(reportResult.value)
+    } else {
+      setReportError('안전 리포트를 불러오지 못했습니다.')
+    }
 
-      if (mapResult.status === 'fulfilled') {
-        setMapData(mapResult.value)
-      } else {
-        setMapError('지도 데이터를 불러오지 못했습니다.')
-      }
+    if (mapResult.status === 'fulfilled') {
+      setMapData(mapResult.value)
+    } else {
+      setMapError('지도 데이터를 불러오지 못했습니다.')
+    }
 
-      setIsReportLoading(false)
-      setIsMapLoading(false)
-    } 
+    setIsReportLoading(false)
+    setIsMapLoading(false)
+  }
+  
+  function scrollToSection(sectionid) {
+    document.getElementById(sectionid)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
 
   return (
     <main className="app">
@@ -58,11 +65,19 @@ export default function App() {
 
         <div className="hero-actions">
 
-          <button type="button" className="primary-button">
+          <button 
+            type="button" 
+            className="primary-button"
+            onClick={() => scrollToSection('region-search')}  
+          >
             지역 검색 시작
           </button>
 
-          <button type="button" className="secondary-button">
+          <button 
+            type="button" 
+            className="secondary-button"
+            onClick={() => scrollToSection('safety-report')}  
+          >
             안전 리포트 보기
           </button>
 

@@ -24,7 +24,7 @@ export default function ReportPreview({ report, isLoading, errorMessage}) {
     }
 
     return (
-        <section className="report-preview">
+        <section id="safety-report" className="report-preview">
             <div className="section-heading">
                 <p className="eyebrow">SAFETY REPORT</p>
                 <h2>
