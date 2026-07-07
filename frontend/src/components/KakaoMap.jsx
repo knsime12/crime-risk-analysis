@@ -35,23 +35,23 @@ export default function KakaoMap({ regionLabel, stations }) {
     const mapRef = useRef(null)
     const [errorMessage, setErrorMessage] = useState('')
 
-    const kakaoMapkey = import.meta.env.VITE_KAKAO_MAP_JAVASCRIPT_KEY
+    const kakaoMapKey = import.meta.env.VITE_KAKAO_MAP_JAVASCRIPT_KEY
 
     useEffect(() => {
         async function renderMap() {
-            if (!kakaoMapkey) {
+            if (!kakaoMapKey) {
                 setErrorMessage('카카오맵 API 키가 설정되지 않았습니다.')
                 return
             }
 
-            if (!mapRef.current || stations.length == 0) {
+            if (!mapRef.current || stations.length === 0) {
                 return
             }
 
             try {
                 setErrorMessage('')
 
-                const kakao = await loadKakaoSdk(kakaoMapkey)
+                const kakao = await loadKakaoSdk(kakaoMapKey)
                 const firstStation = stations[0]
 
                 const center = new kakao.maps.LatLng(
@@ -74,7 +74,7 @@ export default function KakaoMap({ regionLabel, stations }) {
 
                     bounds.extend(position)
 
-                    new kakao.maps.Market({
+                    new kakao.maps.Marker({
                         map,
                         position,
                         title: `${station.name} ${station.type}`,
@@ -88,7 +88,7 @@ export default function KakaoMap({ regionLabel, stations }) {
         }
 
         renderMap()
-    }, [kakaoMapkey, stations])
+    }, [kakaoMapKey, stations])
 
     if (errorMessage) {
         return (
