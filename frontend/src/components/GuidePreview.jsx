@@ -7,6 +7,8 @@ export default function GuidePreview() {
     const [errorMessage, setErrorMessage] = useState('')
 
     const [selectedGuide, setSelectedGuide] = useState(null)
+    const [selectedGuideType, setSelectedGuideType] = useState('')
+    const [isDetailLoading, setIsDetailLoading] = useState(false)
     const [detailErrorMessage, setDetailErrorMessage] = useState('')
 
     useEffect(() => {
@@ -29,12 +31,17 @@ export default function GuidePreview() {
 
     async function handleSelectGuide(guideType) {
         try {
+            setSelectedGuideType(guideType)
+            setIsDetailLoading(true)
             setDetailErrorMessage('')
 
             const data = await getGuideDetail(guideType)
             setSelectedGuide(data)
         } catch {
+            setSelectedGuide(null)
             setDetailErrorMessage('예방 가이드 상세 정보를 불러오지 못했습니다.')
+        } finally {
+            setIsDetailLoading(false)
         }
     }
 
@@ -54,7 +61,7 @@ export default function GuidePreview() {
                     {guides.map((guide) => (
                         <button 
                             type="button"
-                            className="guide-card" 
+                            className={`guide-card ${selectedGuideType === guide.type ? 'selected' : ''}`}
                             key={guide.type}
                             onClick={() => handleSelectGuide(guide.type)}
                         >
@@ -74,26 +81,30 @@ export default function GuidePreview() {
                 </div>
             )}
 
+            {isDetailLoading && (
+                <p className="status-message">예방 가이드 상세 정보를 불러오는 중입니다.</p>
+            )}
+
             {detailErrorMessage && (
                     <p className="status-message error">{detailErrorMessage}</p>
-                )}
+            )}
 
-                {selectedGuide && (
-                    <article className="guide-detail">
-                        <span>{selectedGuide.type}</span>
-                        <h3>{selectedGuide.title}</h3>
-                        <p>{selectedGuide.description}</p>
+            {selectedGuide && !isDetailLoading && (
+                <article className="guide-detail">
+                    <span>{selectedGuide.type}</span>
+                    <h3>{selectedGuide.title}</h3>
+                    <p>{selectedGuide.description}</p>
 
-                        <ul>
-                            {selectedGuide.items.map((item) => (
-                                <li key={`${selectedGuide.type}-${item.title}`}>
-                                    <strong>{item.title}</strong>
-                                    <p>{item.description}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </article>
-                )}
+                    <ul>
+                        {selectedGuide.items.map((item) => (
+                            <li key={`${selectedGuide.type}-${item.title}`}>
+                                <strong>{item.title}</strong>
+                                <p>{item.description}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </article>
+            )}
         </section>
     )
 }
