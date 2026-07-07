@@ -1,4 +1,5 @@
 import './App.css'
+import RegionSearch from './components/RegionSearch'
 
 export default function App() {
   return (
@@ -60,6 +61,8 @@ export default function App() {
         </article>
 
       </section>
+
+      <RegionSearch />
 
     </main>
   )
