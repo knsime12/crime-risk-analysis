@@ -169,12 +169,36 @@ risk_score = (
 ## 프로젝트 구조
 ```text
 crime-risk-analysis/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   ├── routers/
+│   │   └── services/
+│   └── scripts/
+│       └── seed_region.py
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── App.jsx
+│   │   └── App.css
+│   ├── .env.example
+│   └── package.json
+├── legacy_ui/
+│   └── travel-safe-platform-main/
+├── docs/
+│   └── feature_spec.md
 ├── crime_analysis.py
 ├── crime_raw_data.csv
-├── crime_stats.csv
 ├── requirements.txt
 └── README.md
 ```
+
+※ `backend/data/safe_trip.db`는 SQLite seed 실행 시 생성되는 로컬 DB 파일이며 Git에 커밋하지 않습니다.
 
 ---
 
@@ -193,6 +217,7 @@ crime-risk-analysis/
 
 ```powershell
 py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
 ### 2. 라이브러리 설치
