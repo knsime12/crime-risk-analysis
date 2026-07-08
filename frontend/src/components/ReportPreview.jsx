@@ -48,11 +48,26 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
                     <span>CCTV</span>
                     <strong>{report.infra.cctv_count.toLocaleString()}대</strong>
                 </article>
+
+                <article>
+                    <span>경찰서</span>
+                    <strong>{report.infra.police_station_count.toLocaleString()}곳</strong>
+                </article>
+
+                <article>
+                    <span>지구대 · 파출소</span>
+                    <strong>{report.infra.police_box_count.toLocaleString()}곳</strong>
+                </article>
             </div>
 
             <div className="crime-ratio-list">
                 <h3>주요 범죄 유형</h3>
-                <p>{report.major_crime_type}</p>
+                
+                <div className="crime-pill-list">
+                    {report.major_crime_type.split(',').map((crime) => (
+                        <span key={crime.trim()}>{crime.trim()}</span>
+                    ))}
+                </div>
             </div>
 
             <div className="report-actions">
