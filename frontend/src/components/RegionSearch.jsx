@@ -44,6 +44,21 @@ export default function RegionSearch({ onSelectRegion }) {
         }
     }
 
+    async function handleKeywordClick(nextKeyword) {
+        try {
+            setKeyword(nextKeyword)
+            setIsLoading(true)
+            setErrorMessage('')
+
+            const data = await searchRegions(nextKeyword)
+            setRegions(data)
+        } catch {
+            setErrorMessage('지역 검색에 실패했습니다.')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     return (
         <>
             <section id="region-search" className="region-search-section">
@@ -70,7 +85,7 @@ export default function RegionSearch({ onSelectRegion }) {
                         <button
                             type="button"
                             key={item}
-                            onClick={() => setKeyword(item)}
+                            onClick={() => handleKeywordClick(item)}
                         >
                             {item}
                         </button>
