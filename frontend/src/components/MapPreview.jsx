@@ -61,7 +61,7 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
                     <>
                         <p className="station-list-summary">
                             대표 치안 시설 {stations.length}곳
-                            {remainingStationCount > 0 && ` . 외 ${remainingStationCount}곳`}
+                            {remainingStationCount > 0 && ` · 외 ${remainingStationCount}곳`}
                         </p>
 
                         {stations.map((station) => (
