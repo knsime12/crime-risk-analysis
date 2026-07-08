@@ -40,7 +40,7 @@ export default function KakaoMap({ regionLabel, stations }) {
     useEffect(() => {
         async function renderMap() {
             if (!kakaoMapKey) {
-                setErrorMessage('카카오맵 API 키가 설정되지 않았습니다.')
+                setErrorMessage('카카오맵 연동 준비 중입니다.')
                 return
             }
 
@@ -94,7 +94,7 @@ export default function KakaoMap({ regionLabel, stations }) {
         return (
             <div className="kakao-map-placeholder">
                 <p>{errorMessage}</p>
-                <span>{regionLabel} 경찰 시설 좌표 데이터는 아래 목록에서 확인할 수 있습니다.</span>
+                <span>{regionLabel} 치안 시설 정보는 아래 목록에서 먼저 확인할 수 있습니다.</span>
             </div>
         )
     }

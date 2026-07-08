@@ -355,6 +355,12 @@
   margin-top: 20px;
 }
 
+.station-list-summary {
+  margin: 0 0 12px;
+  font-weight: 800;
+  color: #334155;
+}
+
 .station-card {
   display: flex;
   justify-content: space-between;

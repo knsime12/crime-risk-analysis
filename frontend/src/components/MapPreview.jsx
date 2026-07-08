@@ -22,6 +22,8 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
     }
 
     const stations = mapData.police_stations.slice(0, 5)
+    const remainingStationCount = mapData.police_stations.length - stations.length
+    const hasStations = mapData.police_stations.length > 0
 
     return (
         <section id="safety-map" className="map-preview">
@@ -55,21 +57,34 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
             </div>
 
             <div className="station-list">
-                {stations.map((station) => (
-                    <article
-                        className="station-card"
-                        key={`${station.type}-${station.name}-${station.latitude}-${station.longitude}`}
-                    >
-                        <div>
-                            <h3>{station.name}</h3>
-                            <p>{station.type}</p>
-                        </div>
+                {hasStations ? (
+                    <>
+                        <p className="station-list-summary">
+                            대표 치안 시설 {stations.length}곳
+                            {remainingStationCount > 0 && ` . 외 ${remainingStationCount}곳`}
+                        </p>
 
-                        <span>
-                            {station.latitude.toFixed(4)}, {station.longitude.toFixed(4)}
-                        </span>
-                    </article>
-                ))}
+                        {stations.map((station) => (
+                            <article
+                                className="station-card"
+                                key={`${station.type}-${station.name}-${station.latitude}-${station.longitude}`}
+                            >
+                                <div>
+                                    <h3>{station.name}</h3>
+                                    <p>{station.type}</p>
+                                </div>
+
+                                <span>
+                                    {station.latitude.toFixed(4)}, {station.longitude.toFixed(4)}
+                                </span>
+                            </article>
+                        ))}
+                    </>
+                ) : (
+                    <p className="status-message">
+                        표시할 치안 시설 좌표가 없습니다.
+                    </p>
+                )}
             </div>
         </section>
     )
