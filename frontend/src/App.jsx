@@ -108,27 +108,30 @@ export default function App() {
       <section className="feature-grid" aria-label="주요 기능">
 
         <article className="feature-card">
-
-          <span>01</span>
-          <h2>지역 검색</h2>
-          <p>시도와 시군구를 기준으로 지역별 안전 정보를 검색합니다.</p>
-
+          <div className="feature-icon">01</div>
+          <h2>지역 안전 리포트</h2>
+          <p>여행지의 범죄 현황과 안전 정보를 보기 쉽게 확인합니다.</p>
+          <button type="button" onClick={() => scrollToSection('safety-report')}>
+            자세히 보기 →
+          </button>
         </article>
 
         <article className="feature-card">
-
-          <span>02</span>
-          <h2>안전 리포트</h2>
-          <p>위험도 점수, 주요 범죄 유형, CCTV와 경찰 시설 정보를 제공합니다.</p>
-
+          <div className="feature-icon">02</div>
+          <h2>지도 한눈에 보기</h2>
+          <p>경찰서와 지구대 위치를 지도 기반으로 확인합니다.</p>
+          <button type="button" onClick={() => scrollToSection('safety-map')}>
+            자세히 보기 →
+          </button>
         </article>
 
         <article className="feature-card">
-
-          <span>03</span>
-          <h2>지도 시각화</h2>
-          <p>카카오맵 기반으로 경찰 시설 위치와 지역 정보를 표시합니다.</p>
-
+          <div className="feature-icon">03</div>
+          <h2>범죄 예방 가이드</h2>
+          <p>상황별 예방 수칙과 안전 행동 정보를 제공합니다.</p>
+          <button type="button" onClick={() => scrollToSection('safety-guide')}>
+            자세히 보기 →
+          </button>
         </article>
 
       </section>
