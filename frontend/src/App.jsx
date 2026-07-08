@@ -68,7 +68,7 @@ export default function App() {
           <button type="button" onClick={() => scrollToSection('region-search')}>지역 검색</button>
           <button type="button" onClick={() => scrollToSection('safety-report')}>안전 리포트</button>
           <button type="button" onClick={() => scrollToSection('safety-map')}>지도</button>
-          <button type="button" onClick={() => scrollToSection('safety-guid')}>예방 가이드</button>
+          <button type="button" onClick={() => scrollToSection('safety-guide')}>예방 가이드</button>
         </nav>
       </header>
 

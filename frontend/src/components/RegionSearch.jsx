@@ -51,9 +51,11 @@ export default function RegionSearch({ onSelectRegion }) {
 
                 <p className="eyebrow">REGION SEARCH</p>
 
-                <h2>지역 안전 정보를 검색하세요</h2>
+                <h2>어디로 떠나시나요?</h2>
 
-                <p>시도 또는 시군구 이름으로 지역별 위험도 정보를 확인할 수 있습니다.</p>
+                <p>
+                    여행지를 검색하면 범죄 현황, 경찰 시설, 예방 수칙이 담긴 안전 리포트를 확인할 수 있습니다.
+                </p>
 
             </div>
 
@@ -69,10 +71,23 @@ export default function RegionSearch({ onSelectRegion }) {
 
             </form>
 
+            <div className="region-keywords">
+                <span>인기 검색어</span>
+                {['제주', '부산', '강릉', '서울', '경주'].map((item) => (
+                    <button
+                        type="button"
+                        key={item}
+                        onClick={() => setKeyword(item)}
+                    >
+                        {item}
+                    </button>
+                ))}
+            </div>
+
             {isLoading && <p className="status-message">지역 데이터를 불러오는 중입니다.</p>}
             {errorMessage && <p className="status-message error">{errorMessage}</p>}
 
-            {!isLoading && !errorMessage && (
+            {!isLoading && !errorMessage && regions.length === 0 && (
                 <div className="empty-result">
                     <p>검색 결과가 없습니다.</p>
                     <span>시도 또는 시군구 이름을 다시 입력해 주세요.</span>
