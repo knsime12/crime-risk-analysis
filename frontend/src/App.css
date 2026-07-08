@@ -626,3 +626,12 @@
   color: #082c63;
   background: #ffffff;
 }
+
+.region-result-panel {
+  max-width: 960px;
+  margin: 18px auto 0;
+  padding: 28px;
+  border: 1px solid #dbe3ef;
+  border-radius: 20px;
+  background: #ffffff;
+}
