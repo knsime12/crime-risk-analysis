@@ -19,6 +19,11 @@ export default function GuidePreview() {
 
                 const data = await getGuides()
                 setGuides(data)
+
+                if (data.length > 0) {
+                    setSelectedGuideType(data[0].type)
+                    setSelectedGuide(data[0])
+                }
             } catch {
                 setErrorMessage('예방 가이드를 불러오지 못했습니다.')
             } finally {
