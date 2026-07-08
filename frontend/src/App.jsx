@@ -55,14 +55,32 @@ export default function App() {
   }
 
   return (
-    <main className="app">
+    <main id="top" className="app">
+
+      <header className="navbar">
+        <button type="button" className="logo" onClick={() => scrollToSection('top')}>
+          <span className="logo-icon">✓</span>
+          <span>SAFE TRIP</span>
+        </button>
+
+        <nav className="nav-menu">
+          <button type="button" className="active" onClick={() => scrollToSection('top')}>홈</button>
+          <button type="button" onClick={() => scrollToSection('region-search')}>지역 검색</button>
+          <button type="button" onClick={() => scrollToSection('safety-report')}>안전 리포트</button>
+          <button type="button" onClick={() => scrollToSection('safety-map')}>지도</button>
+          <button type="button" onClick={() => scrollToSection('safety-guid')}>예방 가이드</button>
+        </nav>
+      </header>
 
       <section className="hero-section">
 
-        <p className="eyebrow">SAFE TRIP AI</p>
-        <h1>지역별 범죄 위험도를 한눈에 확인하세요</h1>
+        <p className="eyebrow">여행지 안전정보 플랫폼</p>
+        <h1>
+          안전한 여행의 시작,<br />
+          <span>SafeTrip</span>
+        </h1>
         <p className="hero-description">
-          범죄 통계와 치안 인프라 데이터를 기반으로 지역 안전 리포트와 지도 시각화를 제공합니다.
+          여행지를 검색하고 지역별 범죄 현황, 경찰 시설 정보와 예방 수칙을 한눈에 확인하세요.
         </p>
 
         <div className="hero-actions">
