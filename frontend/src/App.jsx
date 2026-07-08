@@ -111,7 +111,7 @@ export default function App() {
           <div className="feature-icon">01</div>
           <h2>지역 안전 리포트</h2>
           <p>여행지의 범죄 현황과 안전 정보를 보기 쉽게 확인합니다.</p>
-          <button type="button" onClick={() => scrollToSection('safety-search')}>
+          <button type="button" onClick={() => scrollToSection('region-search')}>
             자세히 보기 →
           </button>
         </article>
