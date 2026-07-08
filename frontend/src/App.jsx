@@ -120,7 +120,7 @@ export default function App() {
           <div className="feature-icon">02</div>
           <h2>지도 한눈에 보기</h2>
           <p>경찰서와 지구대 위치를 지도 기반으로 확인합니다.</p>
-          <button type="button" onClick={() => scrollToSection('safety-map')}>
+          <button type="button" onClick={() => scrollToSection('region-search')}>
             자세히 보기 →
           </button>
         </article>
