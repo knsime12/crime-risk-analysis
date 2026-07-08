@@ -37,7 +37,7 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
             />
 
             <div className="map-legend">
-                <span><i className="legend-dot stations"></i> 경찰서</span>
+                <span><i className="legend-dot station"></i> 경찰서</span>
                 <span><i className="legend-dot box"></i> 지구대</span>
                 <span><i className="legend-dot post"></i> 파출소</span>
             </div>

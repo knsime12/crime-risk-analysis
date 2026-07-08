@@ -388,56 +388,54 @@
 .guide-preview {
   max-width: 960px;
   margin: 32px auto 0;
-  padding: 32px;
-  border: 1px solid #dbe3ef;
-  border-radius: 8px;
+  padding: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
   background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
-.guide-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+.guide-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 24px;
 }
 
-.guide-card {
-  padding: 20px;
-  border-radius: 8px;
-  background: #f8fafc;
-}
-
-.guide-card span {
-  display: inline-block;
-  margin-bottom: 12px;
-  font-size: 13px;
-  font-weight: 800;
-  color: #2563eb;
-}
-
-.guide-card h3 {
-  margin: 0;
-  color: #0f172a;
-}
-
-.guide-card p {
-  margin: 10px 0 0;
-  line-height: 1.6;
-  color: #64748b;
-}
-
-.guide-card ul {
-  margin: 16px 0 0;
-  padding-left: 18px;
+.guide-tab {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
   color: #475569;
+  background: #f8fafc;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
 }
 
-.guide-card li + li {
-  margin-top: 6px;
+.guide-tab:hover {
+  color: #0d47a1;
+  background: #eef5ff;
+}
+
+.guide-tab.active {
+  color: #ffffff;
+  background: #062b5f;
+}
+
+.guide-tab span,
+.guide-tab p,
+.guide-tab ul {
+  display: none;
+}
+
+.guide-tab h3 {
+  margin: 0;
+  font-size: 14px;
 }
 
 @media (max-width: 768px) {
-  .guide-grid {
+  .guide-tabs {
     grid-template-columns: 1fr;
   }
 }
@@ -500,9 +498,30 @@
 
 .guide-detail {
   margin-top: 24px;
-  padding: 24px;
-  border-radius: 8px;
-  background: #f8fafc;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.guide-tip-banner {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #eef4ff;
+  border: 1px solid #dbeafe;
+  color: #334155;
+}
+
+.guide-tip-banner strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #062b5f;
+}
+
+.guide-tip-banner p {
+  margin: 0;
+  color: #64748b;
 }
 
 .guide-detail span {
@@ -525,9 +544,47 @@
 
 .guide-detail ul {
   display: grid;
-  gap: 12px;
-  margin: 18px 0 0;
-  padding-left: 18px;
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-item {
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.guide-item strong {
+  display: block;
+  color: #0f172a;
+}
+
+.guide-item p {
+  margin: 8px 0 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.emergency-box {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.emergency-box strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #062b5f;
+}
+
+.emergency-box p {
+  margin: 0;
+  color: #64748b;
 }
 
 .guide-detail li p {
