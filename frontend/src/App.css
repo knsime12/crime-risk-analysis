@@ -436,7 +436,7 @@
 
 @media (max-width: 768px) {
   .guide-tabs {
-    grid-template-columns: 1fr;
+    width: 100%;
   }
 }
 
@@ -484,16 +484,6 @@
   color: #ffffff;
   background: #2563eb;
   cursor: pointer;
-}
-
-.guide-card {
-  border: 0;
-  text-align: left;
-  cursor: pointer;
-}
-
-.guide-card:hover {
-  background: #eef6ff;
 }
 
 .guide-detail {
@@ -590,11 +580,6 @@
 .guide-detail li p {
   margin: 6px 0 0;
   color: #64748b;
-}
-
-.guide-card.selected {
-  outline: 2px solid #2563eb;
-  background: #eef6ff;
 }
 
 .report-actions button.secondary-action {
