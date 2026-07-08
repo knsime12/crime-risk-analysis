@@ -187,19 +187,80 @@ crime-risk-analysis/
 
 ---
 
-## 실행 방법
+## 웹서비스 실행 방법
 
-### 라이브러리 설치
+### 1. Python 가상환경 생성
 
-```Bash
-pip install pandas numpy scikit-learn
+```powershell
+py -3.12 -m venv .venv
 ```
 
-### 실행
+### 2. 라이브러리 설치
 
-```Bash
-python crime_analysis.py
+```powershell
+python -m pip install -r requirements.txt
 ```
+
+### 3. SQLite 데이터 생성
+
+```powershell
+python backend/scripts/seed_region.py
+```
+
+생성되는 DB 파일:
+
+```text
+backend/data/safe_trip.db
+```
+※ 이 파일은 Git에 커밋하지 않습니다.
+
+### 4. FastAPI 서버 실행
+
+repo 루트에서 실행합니다.
+
+```powershell
+uvicorn app.main:app --app-dir backend --reload
+```
+
+확인 URL:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+
+### 5. 프론트엔드 실행
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+프론트엔드 기본 주소
+
+```text
+http://localhost:5173
+```
+
+### 6. 프론트엔드 검사
+
+```powershell
+cd frontend
+npm run lint
+npm run build
+```
+
+### 환경변수
+
+프론트엔드 환경변수 예시는 `frontend/.env.example`을 참고합니다.
+
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+VITE_KAKAO_MAP_JAVASCRIPT_KEY=
+```
+
+※ 카카오맵 JavaScript 키는 직접 발급받아 frontend/.env에 설정하고, 실제 키는 Git에 커밋하지 않습니다.
 
 ---
 
