@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getRegions, searchRegions} from '../api/client'
+import { getRegions, searchRegions } from '../api/client'
 
 export default function RegionSearch({ onSelectRegion }) {
     const [keyword, setKeyword] = useState('')
@@ -73,6 +73,13 @@ export default function RegionSearch({ onSelectRegion }) {
             {errorMessage && <p className="status-message error">{errorMessage}</p>}
 
             {!isLoading && !errorMessage && (
+                <div className="empty-result">
+                    <p>검색 결과가 없습니다.</p>
+                    <span>시도 또는 시군구 이름을 다시 입력해 주세요.</span>
+                </div>
+            )}
+
+            {!isLoading && !errorMessage && regions.length > 0 && (
                 <div className="region-list">
 
                     {regions.map((region) => (
