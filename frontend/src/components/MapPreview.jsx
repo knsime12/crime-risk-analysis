@@ -25,13 +25,10 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
 
     return (
         <section id="safety-map" className="map-preview">
-
             <div className="section-heading">
-
                 <p className="eyebrow">SAFETY MAP</p>
                 <h2>{mapData.region_label} 치안 시설</h2>
-                <p>카카오맵 연동 전 경찰 시설 좌표 데이터를 먼저 확인합니다.</p>
-
+                <p>경찰서 · 지구대 · 파출소 위치를 지도와 목록으로 확인합니다.</p>
             </div>
 
             <KakaoMap
@@ -39,22 +36,22 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
                 stations={mapData.police_stations}
             />
 
+            <div className="map-legend">
+                <span><i className="legend-dot stations"></i> 경찰서</span>
+                <span><i className="legend-dot box"></i> 지구대</span>
+                <span><i className="legend-dot post"></i> 파출소</span>
+            </div>
+
             <div className="map-summary">
-
                 <article>
-
                     <span>경찰 시설</span>
                     <strong>{mapData.police_stations.length.toLocaleString()}곳</strong>
-
                 </article>
 
                 <article>
-
                     <span>CCTV</span>
                     <strong>{mapData.cctv_count.toLocaleString()}대</strong>
-
                 </article>
-
             </div>
 
             <div className="station-list">
@@ -63,22 +60,17 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
                         className="station-card"
                         key={`${station.type}-${station.name}-${station.latitude}-${station.longitude}`}
                     >
-
                         <div>
-
                             <h3>{station.name}</h3>
                             <p>{station.type}</p>
-
                         </div>
 
                         <span>
                             {station.latitude.toFixed(4)}, {station.longitude.toFixed(4)}
                         </span>
-
                     </article>
                 ))}
             </div>
-
         </section>
     )
 }

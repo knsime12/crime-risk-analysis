@@ -1,4 +1,4 @@
-export default function ReportPreview({ report, isLoading, errorMessage, onViewMap,onViewGuide }) {
+export default function ReportPreview({ report, isLoading, errorMessage, onViewMap, onViewGuide }) {
     if (isLoading) {
         return (
             <section id="safety-report" className="report-preview empty">

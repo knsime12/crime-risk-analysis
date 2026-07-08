@@ -312,10 +312,11 @@
 .map-preview {
   max-width: 960px;
   margin: 32px auto 0;
-  padding: 32px;
-  border: 1px solid #dbe3ef;
-  border-radius: 8px;
+  padding: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
   background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
 .map-preview.empty {
@@ -331,9 +332,9 @@
 
 .map-summary article,
 .station-card {
-  padding: 18px;
-  border-radius: 8px;
-  background: #f8fafc;
+  padding: 20px;
+  border-radius: 18px;
+  background: #f5f8ff;
 }
 
 .map-summary span,
@@ -446,9 +447,10 @@
   width: 100%;
   min-height: 360px;
   margin-top: 24px;
-  border: 1px solid #dbe3ef;
-  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
   background: #f8fafc;
+  overflow: hidden;
 }
 
 .kakao-map-placeholder {
@@ -673,4 +675,38 @@
   font-weight: 800;
   color: #062b5f;
   background: #eef4ff;
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot.station {
+  background: #062b5f;
+}
+
+.legend-dot.box {
+  background: #2563eb;
+}
+
+.legend-dot.post {
+  background: #38bdf8;
 }
