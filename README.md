@@ -298,7 +298,7 @@ VITE_KAKAO_MAP_JAVASCRIPT_KEY=
 
 ```text
 http://localhost:5173
-http://127.0.0.1.5173
+http://127.0.0.1:5173
 ```
 
 ※ REST API 키가 아니라 JavaScript 키를 사용합니다.
