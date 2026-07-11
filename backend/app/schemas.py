@@ -1,5 +1,3 @@
-from re import S
-
 from pydantic import BaseModel
 
 class RegionSummary(BaseModel):
