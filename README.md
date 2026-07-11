@@ -237,7 +237,14 @@ python backend/scripts/seed_region.py
 ```text
 backend/data/safe_trip.db
 ```
+
 ※ 이 파일은 Git에 커밋하지 않습니다.
+
+※ 모델 또는 seed 코드가 변경되었거나 지도 API `police_stations` 테이블 오류가 발생하면 seed를 다시 실행합니다.
+
+```powershell
+python backend/scripts/seed_region.py
+```
 
 ### 4. FastAPI 서버 실행
 
@@ -286,6 +293,22 @@ VITE_KAKAO_MAP_JAVASCRIPT_KEY=
 ```
 
 ※ 카카오맵 JavaScript 키는 직접 발급받아 frontend/.env에 설정하고, 실제 키는 Git에 커밋하지 않습니다.
+
+※ 카카오맵을 사용하려면 카카오 개발자 콘솔의 Web 플랫폼 사이트 도메인에 아래 로컬 개발 주소를 등록합니다.
+
+```text
+http://localhost:5173
+http://127.0.0.1.5173
+```
+
+※ REST API 키가 아니라 JavaScript 키를 사용합니다.
+
+`.env`를 수정한 뒤에는 Vite 개발 서버를 다시 실행해야 합니다.
+
+```powershell
+cd frontend
+npm run dev
+```
 
 ---
 
