@@ -35,7 +35,7 @@ export default function KakaoMap({ regionLabel, stations }) {
     const mapRef = useRef(null)
     const [errorMessage, setErrorMessage] = useState('')
 
-    const kakaoMapKey = import.meta.env.VITE_KAKAO_MAP_JAVASCRIPT_KEY
+    const kakaoMapKey = import.meta.env.VITE_KAKAO_MAP_JAVASCRIPT_KEY?.trim()
 
     useEffect(() => {
         async function renderMap() {
@@ -95,7 +95,8 @@ export default function KakaoMap({ regionLabel, stations }) {
                 })
 
                 map.setBounds(bounds)
-            } catch {
+            } catch (error) {
+                console.error(error)
                 setErrorMessage('카카오맵을 불러오지 못했습니다.')
             }
         }
