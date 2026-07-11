@@ -24,8 +24,10 @@ export default function App() {
     setSelectedReport(null)
     setMapData(null)
 
-    scrollToSection('safety-report')
-    
+    setTimeout(() => {
+      scrollToSection('safety-report')
+    }, 0)
+      
     const [reportResult, mapResult] = await Promise.allSettled([
       getRegionReport(regionId),
       getMapRegion(regionId),
