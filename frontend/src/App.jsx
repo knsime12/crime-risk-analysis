@@ -54,6 +54,14 @@ export default function App() {
     })
   }
 
+  function scrollToReportEntry() {
+    scrollToSection(selectedReport ? 'safety-report' : 'region-search')
+  }
+
+  function scrollToMapEntry() {
+    scrollToSection(mapData ? 'safety-map' : 'region-search')
+  }
+
   return (
     <main id="top" className="app">
 
@@ -66,8 +74,8 @@ export default function App() {
         <nav className="nav-menu">
           <button type="button" className="active" onClick={() => scrollToSection('top')}>홈</button>
           <button type="button" onClick={() => scrollToSection('region-search')}>지역 검색</button>
-          <button type="button" onClick={() => scrollToSection('safety-report')}>안전 리포트</button>
-          <button type="button" onClick={() => scrollToSection('safety-map')}>지도</button>
+          <button type="button" onClick={scrollToReportEntry}>안전 리포트</button>
+          <button type="button" onClick={scrollToMapEntry}>지도</button>
           <button type="button" onClick={() => scrollToSection('safety-guide')}>예방 가이드</button>
         </nav>
       </header>
@@ -120,7 +128,7 @@ export default function App() {
           <div className="feature-icon">02</div>
           <h2>지도 한눈에 보기</h2>
           <p>경찰서와 지구대 위치를 지도 기반으로 확인합니다.</p>
-          <button type="button" onClick={() => scrollToSection('region-search')}>
+          <button type="button" onClick={scrollToMapEntry}>
             자세히 보기 →
           </button>
         </article>
