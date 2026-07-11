@@ -74,8 +74,8 @@ export default function MapPreview({ mapData, isLoading, errorMessage }) {
                                     <p>{station.type}</p>
                                 </div>
 
-                                <span>
-                                    {station.latitude.toFixed(4)}, {station.longitude.toFixed(4)}
+                                <span title={`${station.latitude.toFixed(4)}, ${station.longitude.toFixed(4)}`}>
+                                    지도 마커 표시
                                 </span>
                             </article>
                         ))}
