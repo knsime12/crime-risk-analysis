@@ -758,3 +758,40 @@
 .legend-dot.post {
   background: #38bdf8;
 }
+
+.crime-ratio-bars {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.crime-ratio-item > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.crime-ratio-item span {
+  font-weight: 800;
+  color: #334155;
+}
+
+.crime-ratio-item strong {
+  color: #2563eb;
+}
+
+.crime-ratio-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.crime-ratio-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2563eb;
+}

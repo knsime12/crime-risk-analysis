@@ -28,6 +28,14 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
         .map((crime) => crime.trim())
         .filter(Boolean)
 
+    const crimeRatioItems = [
+        { label: '절도', value: report.crime_ratios.theft },
+        { label: '폭력', value: report.crime_ratios.violence },
+        { label: '성범죄', value: report.crime_ratios.sexual_assault },
+        { label: '강도', value: report.crime_ratios.robbery },
+        { label: '살인', value: report.crime_ratios.murder },
+    ]
+
     return (
         <section id="safety-report" className="report-preview">
             <div className="section-heading">
@@ -71,6 +79,17 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
                 <div className="crime-pill-list">
                     {majorCrimeTypes.map((crime) => (
                         <span key={crime}>{crime}</span>
+                    ))}
+                </div>
+
+                <div className="crime-ratio-bars">
+                    {crimeRatioItems.map((item) => (
+                        <div className="crime-ratio-item" key={item.label}>
+                            <div>
+                                <span>{item.label}</span>
+                                <strong>{item.value.toFixed(1)}%</strong>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
