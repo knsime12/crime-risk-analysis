@@ -23,6 +23,11 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
         )
     }
 
+    const majorCrimeTypes = report.major_crime_type
+        .split(',')
+        .map((crime) => crime.trim())
+        .filter(Boolean)
+
     return (
         <section id="safety-report" className="report-preview">
             <div className="section-heading">
@@ -64,8 +69,8 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
                 <h3>주요 범죄 유형</h3>
                 
                 <div className="crime-pill-list">
-                    {report.major_crime_type.split(',').map((crime) => (
-                        <span key={crime.trim()}>{crime.trim()}</span>
+                    {majorCrimeTypes.map((crime) => (
+                        <span key={crime}>{crime}</span>
                     ))}
                 </div>
             </div>
