@@ -65,6 +65,7 @@ export default function KakaoMap({ regionLabel, stations }) {
                 })
 
                 const bounds = new kakao.maps.LatLngBounds()
+                let activeInfoWindow = null
 
                 stations.forEach((station) => {
                     const position = new kakao.maps.LatLng(
@@ -90,7 +91,9 @@ export default function KakaoMap({ regionLabel, stations }) {
                     })
 
                     kakao.maps.event.addListener(marker, 'click', () => {
+                        activeInfoWindow?.close()
                         infoWindow.open(map, marker)
+                        activeInfoWindow = infoWindow
                     })
                 })
 
