@@ -89,6 +89,10 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
                                 <span>{item.label}</span>
                                 <strong>{item.value.toFixed(1)}%</strong>
                             </div>
+
+                            <div className="crime-ratio-track">
+                                <i style={{ width: `${Math.min(item.value, 100)}%` }} />
+                            </div>
                         </div>
                     ))}
                 </div>
