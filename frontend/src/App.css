@@ -1,7 +1,3 @@
-.app {
-  min-height: 100vh;
-  padding: 34px 24px 64px;
-}
 
 .hero-section {
   max-width: 960px;
@@ -115,9 +111,6 @@
 }
 
 @media (max-width: 768px) {
-  .app {
-    padding: 32px 18px;
-  }
 
   .hero-section h1 {
     font-size: 34px;
@@ -610,64 +603,6 @@
 .empty-result span {
   display: block;
   margin-top: 8px;
-}
-
-.navbar {
-  width: 100%;
-  height: 72px;
-  background: #082c63;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 42px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo,
-.nav-menu button {
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: white;
-  font-size: 21px;
-  font-weight: 900;
-}
-
-.logo-icon {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: #eff6ff;
-  color: #082c63;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  height: 100%;
-}
-
-.nav-menu button {
-  height: 100%;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.nav-menu button:hover,
-.nav-menu button.active {
-  color: white;
 }
 
 .region-keywords {
