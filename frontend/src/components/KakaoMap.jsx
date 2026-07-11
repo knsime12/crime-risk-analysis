@@ -74,10 +74,23 @@ export default function KakaoMap({ regionLabel, stations }) {
 
                     bounds.extend(position)
 
-                    new kakao.maps.Marker({
+                    const marker = new kakao.maps.Marker({
                         map,
                         position,
                         title: `${station.name} ${station.type}`,
+                    })
+
+                    const infoWindow = new kakao.maps.InfoWindow({
+                        content: `
+                            <div style="padding:8px 10px;font-size:13px;line-height:1.5;">
+                                <strong>${station.name}</strong><br />
+                                <span>${station.type}</span>
+                            </div>
+                        `,
+                    })
+
+                    kakao.maps.event.addListener(marker, 'click', () => {
+                        infoWindow.open(map, marker)
                     })
                 })
 
