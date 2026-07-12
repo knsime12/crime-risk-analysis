@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import RegionPage from './pages/RegionPage'
@@ -11,7 +11,9 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/regions" element={<RegionPage />} />
+      <Route path="/reports" element={<Navigate to="/regions" replace />} />
       <Route path="/reports/:regionId" element={<ReportPage />} />
+      <Route path="/map" element={<Navigate to="/regions" replace />} />
       <Route path="/map/:regionId" element={<MapPage />} />
       <Route path="/guides" element={<GuidePage />} />
     </Routes>
