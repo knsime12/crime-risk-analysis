@@ -84,6 +84,16 @@
   cursor: pointer;
 }
 
+.region-search-form button {
+  display: grid;
+  place-items: center;
+}
+
+.region-search-form button svg {
+  width: 22px;
+  height: 22px;
+}
+
 .region-list {
   display: grid;
   gap: 12px;

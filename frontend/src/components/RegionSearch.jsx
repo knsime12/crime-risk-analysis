@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+import { Search } from 'lucide-react'
+
 import { getRegions, searchRegions } from '../api/client'
 
-export default function RegionSearch({ onSelectRegion, noticeMessage }) {
-    const [keyword, setKeyword] = useState('')
+export default function RegionSearch({ onSelectRegion, noticeMessage, initialKeyword = '' }) {
+    const [keyword, setKeyword] = useState(initialKeyword)
     const [regions, setRegions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState('')
@@ -13,7 +15,13 @@ export default function RegionSearch({ onSelectRegion, noticeMessage }) {
                 setIsLoading(true)
                 setErrorMessage('')
 
-                const data = await getRegions()
+                const nextKeyword = initialKeyword.trim()
+                setKeyword(nextKeyword)
+
+                const data = nextKeyword
+                    ? await searchRegions(nextKeyword)
+                    : await getRegions()
+
                 setRegions(data)
             } catch {
                 setErrorMessage('지역 목록을 불러오지 못했습니다.')
@@ -23,7 +31,7 @@ export default function RegionSearch({ onSelectRegion, noticeMessage }) {
         }
 
         loadInitialRegions()
-    }, [])
+    }, [initialKeyword])
 
     async function handleSearch(event) {
         event.preventDefault()
@@ -79,7 +87,9 @@ export default function RegionSearch({ onSelectRegion, noticeMessage }) {
                             onChange={(event) => setKeyword(event.target.value)}
                             placeholder="예: 서울, 종로구, 제주"
                         />
-                        <button type="submit">검색</button>
+                        <button type="submit" aria-label="검색">
+                            <Search size={22} strokeWidth={2.4} />
+                        </button>
                     </form>
 
                     <div className="region-keywords">
