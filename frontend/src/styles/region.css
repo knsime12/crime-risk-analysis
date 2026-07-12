@@ -2,6 +2,8 @@
   max-width: 960px;
   margin: 48px auto 0;
   padding: 42px;
+  position: relative;
+  overflow: hidden;
   border-radius: 24px;
   background: linear-gradient(135deg, #082c63 0%, #0c4a9e 55%, #1e6bb8 100%);
   color: #ffffff;
