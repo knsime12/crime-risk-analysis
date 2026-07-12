@@ -3,7 +3,7 @@ import { Search } from 'lucide-react'
 
 import { getRegions, searchRegions } from '../api/client'
 
-export default function RegionSearch({ onSelectRegion, noticeMessage, initialKeyword = '' }) {
+export default function RegionSearch({ onSelectRegion, noticeMessage, initialKeyword = '', onKeywordChange }) {
     const [keyword, setKeyword] = useState(initialKeyword)
     const [regions, setRegions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -36,6 +36,13 @@ export default function RegionSearch({ onSelectRegion, noticeMessage, initialKey
     async function handleSearch(event) {
         event.preventDefault()
 
+        const trimmedKeyword = keyword.trim()
+
+        if (onKeywordChange) {
+            onKeywordChange(trimmedKeyword)
+            return
+        }
+
         try {
             setIsLoading(true)
             setErrorMessage('')
@@ -53,17 +60,10 @@ export default function RegionSearch({ onSelectRegion, noticeMessage, initialKey
     }
 
     async function handleKeywordClick(nextKeyword) {
-        try {
-            setKeyword(nextKeyword)
-            setIsLoading(true)
-            setErrorMessage('')
+        setKeyword(nextKeyword)
 
-            const data = await searchRegions(nextKeyword)
-            setRegions(data)
-        } catch {
-            setErrorMessage('지역 검색에 실패했습니다.')
-        } finally {
-            setIsLoading(false)
+        if (onKeywordChange) {
+            onKeywordChange(nextKeyword)
         }
     }
 
@@ -94,7 +94,7 @@ export default function RegionSearch({ onSelectRegion, noticeMessage, initialKey
 
                     <div className="region-keywords">
                         <span>인기 검색어</span>
-                        {['제주', '부산', '강릉', '서울', '경주'].map((item) => (
+                        {['제주', '부산 해운대', '강릉', '서울', '경주'].map((item) => (
                             <button
                                 type="button"
                                 key={item}

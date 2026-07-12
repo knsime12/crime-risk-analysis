@@ -12,13 +12,25 @@ export default function RegionPage() {
     navigate(`/reports/${regionId}`)
   }
 
+  function handleKeywordChange(nextKeyword) {
+    const trimmedKeyword = nextKeyword.trim()
+
+    if (trimmedKeyword) {
+      navigate(`/regions?keyword=${encodeURIComponent(trimmedKeyword)}`)
+      return
+    }
+
+    navigate('/regions')
+  }
+
   return (
     <main id="top" className="app">
       <Header />
 
-      <RegionSearch 
+      <RegionSearch
         initialKeyword={initialKeyword}
-        onSelectRegion={handleSelectRegion} 
+        onKeywordChange={handleKeywordChange}
+        onSelectRegion={handleSelectRegion}
       />
     </main>
   )

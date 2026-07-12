@@ -36,7 +36,7 @@ export default function HomeSection({ onSearch, onKeywordSearch, onStartSearch, 
 
           <div className="home-keywords">
             <span>인기 검색어</span>
-            {['제주도', '부산 해운대', '강릉', '홍대입구', '경주'].map((keyword) => (
+            {['제주', '부산 해운대', '강릉', '서울', '경주'].map((keyword) => (
               <button
                 type="button"
                 key={keyword}
