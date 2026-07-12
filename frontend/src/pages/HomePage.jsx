@@ -18,6 +18,7 @@ export default function HomePage() {
             onKeywordSearch={(keyword) => {
                 navigate(`/regions?keyword=${encodeURIComponent(keyword)}`)
             }}
+            onStartSearch={() => navigate('/regions')}
             onViewMap={() => navigate('/regions')}
             onViewGuide={() => navigate('/guides')}
         />

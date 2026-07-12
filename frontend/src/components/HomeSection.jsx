@@ -1,6 +1,8 @@
+import { BadgeCheck, BarChart3, MapPinned, Search } from 'lucide-react'
+
 import travelImage from '../assets/travel.png'
 
-export default function HomeSection({ onSearch, onKeywordSearch, onViewMap, onViewGuide }) {
+export default function HomeSection({ onSearch, onKeywordSearch, onStartSearch, onViewMap, onViewGuide }) {
   return (
     <>
       <section className="hero-section">
@@ -27,6 +29,9 @@ export default function HomeSection({ onSearch, onKeywordSearch, onViewMap, onVi
               placeholder="어디로 여행 가시나요?"
               aria-label="여행지 검색"
             />
+            <button type="submit" aria-label="검색">
+              <Search size={22} strokeWidth={2.4} />
+            </button>
           </form>
 
           <div className="home-keywords">
@@ -56,16 +61,20 @@ export default function HomeSection({ onSearch, onKeywordSearch, onViewMap, onVi
 
       <section className="feature-grid" aria-label="주요 기능">
         <article className="feature-card">
-          <div className="feature-icon">01</div>
+          <div className="feature-icon">
+            <BarChart3 size={26} strokeWidth={2.2} />
+          </div>
           <h2>지역 안전 리포트</h2>
           <p>여행지의 범죄 현황과 안전 정보를 보기 쉽게 확인합니다.</p>
-          <button type="button" onClick={onSearch}>
+          <button type="button" onClick={onStartSearch}>
             자세히 보기 →
           </button>
         </article>
 
         <article className="feature-card">
-          <div className="feature-icon">02</div>
+          <div className="feature-icon">
+            <MapPinned size={26} strokeWidth={2.2} />
+          </div>
           <h2>지도 한눈에 보기</h2>
           <p>경찰서와 지구대 위치를 지도 기반으로 확인합니다.</p>
           <button type="button" onClick={onViewMap}>
@@ -74,7 +83,9 @@ export default function HomeSection({ onSearch, onKeywordSearch, onViewMap, onVi
         </article>
 
         <article className="feature-card">
-          <div className="feature-icon">03</div>
+          <div className="feature-icon">
+            <BadgeCheck size={26} strokeWidth={2.2} />
+          </div>
           <h2>범죄 예방 가이드</h2>
           <p>상황별 예방 수칙과 안전 행동 정보를 제공합니다.</p>
           <button type="button" onClick={onViewGuide}>
