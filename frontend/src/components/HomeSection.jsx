@@ -1,6 +1,6 @@
 import travelImage from '../assets/travel.png'
 
-export default function HomeSection({ onStartSearch, onViewMap, onViewGuide }) {
+export default function HomeSection({ onSearch, onKeywordSearch, onViewMap, onViewGuide }) {
   return (
     <>
       <section className="hero-section">
@@ -14,31 +14,38 @@ export default function HomeSection({ onStartSearch, onViewMap, onViewGuide }) {
             여행지를 검색하고 지역별 범죄 현황, 경찰 시설 정보와 예방 수칙을 한눈에 확인하세요.
           </p>
 
-          <div className="hero-actions">
-            <button type="button" className="primary-button" onClick={onStartSearch}>
-              지역 검색 시작
-            </button>
+          <form
+            className="home-search-form"
+            onSubmit={(event) => {
+              event.preventDefault()
+              const keyword = event.currentTarget.keyword.value.trim()
+              onSearch(keyword)
+            }}
+          >
+            <input
+              name="keyword"
+              placeholder="어디로 여행 가시나요?"
+              aria-label="여행지 검색"
+            />
+          </form>
 
-            <button type="button" className="secondary-button" onClick={onStartSearch}>
-              안전 리포트 보기
-            </button>
+          <div className="home-keywords">
+            <span>인기 검색어</span>
+            {['제주도', '부산 해운대', '강릉', '홍대입구', '경주'].map((keyword) => (
+              <button
+                type="button"
+                key={keyword}
+                onClick={() => onKeywordSearch(keyword)}
+              >
+                {keyword}
+              </button>
+            ))}
           </div>
 
           <div className="quick-info">
-            <div>
-              <strong>지역별</strong>
-              <span>범죄 현황 분석</span>
-            </div>
-
-            <div>
-              <strong>지도 기반</strong>
-              <span>경찰 시설 위치</span>
-            </div>
-
-            <div>
-              <strong>맞춤형</strong>
-              <span>예방 수칙 제공</span>
-            </div>
+            <p>지역별 범죄 현황 분석</p>
+            <p>지도 기반 지구대·경찰서 위치</p>
+            <p>맞춤형 예방 수칙 제공</p>
           </div>
         </div>
 
@@ -52,7 +59,7 @@ export default function HomeSection({ onStartSearch, onViewMap, onViewGuide }) {
           <div className="feature-icon">01</div>
           <h2>지역 안전 리포트</h2>
           <p>여행지의 범죄 현황과 안전 정보를 보기 쉽게 확인합니다.</p>
-          <button type="button" onClick={onStartSearch}>
+          <button type="button" onClick={onSearch}>
             자세히 보기 →
           </button>
         </article>

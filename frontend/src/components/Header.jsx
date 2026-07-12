@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router-dom'
 
+import safeLogo from '../assets/safe.png'
+
 export default function Header() {
   return (
     <header className="navbar">
       <NavLink to="/" className="logo">
-        <span className="logo-icon">✓</span>
+        <img className="logo-image" src={safeLogo} alt="SAFE TRIP" />
         <span>SAFE TRIP</span>
       </NavLink>
 

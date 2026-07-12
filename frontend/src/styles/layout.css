@@ -1,11 +1,12 @@
 .app {
   min-height: 100vh;
-  padding: 34px 24px 64px;
+  padding: 0 24px 64px;
 }
 
 .navbar {
-  width: 100%;
+  width: calc(100% + 48px);
   height: 72px;
+  margin: 0 -24px;
   background: #082c63;
   display: flex;
   align-items: center;
@@ -24,12 +25,23 @@
   text-decoration: none;
 }
 
+.logo-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.logo-image-wide {
+  width: 128px;
+  height: auto;
+}
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   color: white;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 900;
 }
 

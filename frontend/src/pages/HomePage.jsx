@@ -8,13 +8,19 @@ export default function HomePage() {
 
   return (
     <main id="top" className="app">
-      <Header />
+        <Header />
 
-      <HomeSection
-        onStartSearch={() => navigate('/regions')}
-        onViewMap={() => navigate('/regions')}
-        onViewGuide={() => navigate('/guides')}
-      />
+        <HomeSection
+            onSearch={(keyword) => {
+                const query = keyword ? `?keyword=${encodeURIComponent(keyword)}` : ''
+                navigate(`/regions${query}`)
+            }}
+            onKeywordSearch={(keyword) => {
+                navigate(`/regions?keyword=${encodeURIComponent(keyword)}`)
+            }}
+            onViewMap={() => navigate('/regions')}
+            onViewGuide={() => navigate('/guides')}
+        />
     </main>
   )
 }
