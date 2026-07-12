@@ -72,7 +72,7 @@ export default function App() {
         onGoRegionSearch={() => scrollToSection('region-search')}
         onGoReport={scrollToReportEntry}
         onGoMap={scrollToMapEntry}
-        onGoGide={() => scrollToSection('safety-guide')}
+        onGoGuide={() => scrollToSection('safety-guide')}
       />
 
       <HomeSection
