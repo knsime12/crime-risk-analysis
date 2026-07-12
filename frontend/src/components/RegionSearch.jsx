@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getRegions, searchRegions } from '../api/client'
 
-export default function RegionSearch({ onSelectRegion }) {
+export default function RegionSearch({ onSelectRegion, noticeMessage }) {
     const [keyword, setKeyword] = useState('')
     const [regions, setRegions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -70,6 +70,8 @@ export default function RegionSearch({ onSelectRegion }) {
                             여행지를 검색하면 범죄 현황, 경찰 시설, 예방 수칙이 담긴 안전 리포트를 확인할 수 있습니다.
                         </p>
                     </div>
+
+                    {noticeMessage && <p className="status-message">{noticeMessage}</p>}
 
                     <form className="region-search-form" onSubmit={handleSearch}>
                         <input

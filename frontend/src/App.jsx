@@ -17,6 +17,8 @@ export default function App() {
   const [mapError, setMapError] = useState('')
   const [isMapLoading, setIsMapLoading] = useState(false)
 
+  const [regionNotice, setRegionNotice] = useState('')
+
   async function handleSelectRegion(regionId) {
     setIsReportLoading(true)
     setIsMapLoading(true)
@@ -24,6 +26,7 @@ export default function App() {
     setMapError('')
     setSelectedReport(null)
     setMapData(null)
+    setRegionNotice('')
 
     setTimeout(() => {
       scrollToSection('safety-report')
@@ -62,7 +65,13 @@ export default function App() {
   }
 
   function scrollToMapEntry() {
-    scrollToSection(mapData ? 'safety-map' : 'region-search')
+    if (mapData) {
+      scrollToSection('safety-map')
+      return
+    }
+
+    setRegionNotice('지도를 보려면 먼저 지역을 선택해 주세요.')
+    scrollToSection('region-search')
   }
 
   return (
@@ -81,7 +90,10 @@ export default function App() {
         onViewGuide={() => scrollToSection('safety-guide')}
       />
 
-      <RegionSearch onSelectRegion={handleSelectRegion} />
+      <RegionSearch 
+        onSelectRegion={handleSelectRegion} 
+        noticeMessage={regionNotice}
+      />
 
       <ReportPreview 
         report={selectedReport}
