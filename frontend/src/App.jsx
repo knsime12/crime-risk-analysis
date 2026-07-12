@@ -6,6 +6,7 @@ import ReportPreview from './components/ReportPreview'
 import MapPreview from './components/MapPreview'
 import GuidePreview from './components/GuidePreview'
 import HomeSection from './components/HomeSection'
+import Header from './components/Header'
 
 export default function App() {
   const [selectedReport, setSelectedReport] = useState(null)
@@ -66,21 +67,13 @@ export default function App() {
 
   return (
     <main id="top" className="app">
-
-      <header className="navbar">
-        <button type="button" className="logo" onClick={() => scrollToSection('top')}>
-          <span className="logo-icon">✓</span>
-          <span>SAFE TRIP</span>
-        </button>
-
-        <nav className="nav-menu">
-          <button type="button" className="active" onClick={() => scrollToSection('top')}>홈</button>
-          <button type="button" onClick={() => scrollToSection('region-search')}>지역 검색</button>
-          <button type="button" onClick={scrollToReportEntry}>안전 리포트</button>
-          <button type="button" onClick={scrollToMapEntry}>지도</button>
-          <button type="button" onClick={() => scrollToSection('safety-guide')}>예방 가이드</button>
-        </nav>
-      </header>
+      <Header
+        onGoHome={() => scrollToSection('top')}
+        onGoRegionSearch={() => scrollToSection('region-search')}
+        onGoReport={scrollToReportEntry}
+        onGoMap={scrollToMapEntry}
+        onGoGide={() => scrollToSection('safety-guide')}
+      />
 
       <HomeSection
         onStartSearch={() => scrollToSection('region-search')}
