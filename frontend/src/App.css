@@ -1,62 +1,3 @@
-.report-preview {
-  max-width: 960px;
-  margin: 32px auto 0;
-  padding: 34px;
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-}
-
-.report-preview.empty {
-  color: #64748b;
-}
-
-.report-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
-  margin-top: 24px;
-}
-
-.report-grid article {
-  padding: 20px;
-  border-radius: 18px;
-  background: #f5f8ff;
-}
-
-.report-grid span {
-  display: block;
-  margin-bottom: 10px;
-  color: #64748b;
-  font-weight: 700;
-}
-
-.report-grid strong {
-  font-size: 26px;
-  color: #062b5f;
-}
-
-.crime-ratio-list {
-  margin-top: 24px;
-}
-
-.crime-ratio-list h3 {
-  margin: 0 0 8px;
-  color: #0f172a;
-}
-
-.crime-ratio-list p {
-  margin: 0;
-  color: #475569;
-}
-
-@media (max-width: 768px) {
-  .report-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .map-preview {
   max-width: 960px;
   margin: 32px auto 0;
@@ -223,23 +164,6 @@
   margin-top: 8px;
 }
 
-.report-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-.report-actions button {
-  border: 0;
-  border-radius: 8px;
-  padding: 12px 18px;
-  font-weight: 700;
-  color: #ffffff;
-  background: #2563eb;
-  cursor: pointer;
-}
-
 .guide-detail {
   margin-top: 24px;
   padding: 28px;
@@ -336,11 +260,6 @@
   color: #64748b;
 }
 
-.report-actions button.secondary-action {
-  color: #1e3a8a;
-  background: #dbeafe;
-}
-
 .crime-pill-list {
   display: flex;
   flex-wrap: wrap;
@@ -389,41 +308,4 @@
 
 .legend-dot.post {
   background: #38bdf8;
-}
-
-.crime-ratio-bars {
-  display: grid;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.crime-ratio-item > div:first-child {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.crime-ratio-item span {
-  font-weight: 800;
-  color: #334155;
-}
-
-.crime-ratio-item strong {
-  color: #2563eb;
-}
-
-.crime-ratio-track {
-  height: 8px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #e2e8f0;
-}
-
-.crime-ratio-track i {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: #2563eb;
 }
