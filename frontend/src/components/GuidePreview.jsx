@@ -62,63 +62,58 @@ export default function GuidePreview() {
             {errorMessage && <p className="status-message error">{errorMessage}</p>}
 
             {!isLoading && !errorMessage && (
-                <div className="guide-tabs">
-                    {guides.map((guide) => (
-                        <button 
-                            type="button"
-                            className={`guide-tab ${selectedGuideType === guide.type ? 'active' : ''}`}
-                            key={guide.type}
-                            onClick={() => handleSelectGuide(guide.type)}
-                        >
-                            <span>{guide.type}</span>
-                            <h3>{guide.title}</h3>
-                            <p>{guide.description}</p>
-
-                            <ul>
-                                {guide.items.slice(0, 2).map((item) => (
-                                    <li key={`${guide.type}-${item.title}`}>
-                                        {item.title}
-                                    </li>
-                                ))}
-                            </ul>
-                        </button>
-                    ))}
-                </div>
-            )}
-
-            {isDetailLoading && (
-                <p className="status-message">예방 가이드 상세 정보를 불러오는 중입니다.</p>
-            )}
-
-            {detailErrorMessage && (
-                <p className="status-message error">{detailErrorMessage}</p>
-            )}
-
-            {selectedGuide && !isDetailLoading && (
-                <article className="guide-detail">
-                    <span>{selectedGuide.type}</span>
-                    <h3>{selectedGuide.title}</h3>
-                    <p>{selectedGuide.description}</p>
-
-                    <div className="guide-tip-banner">
-                        <strong>여행 전 확인하세요.</strong>
-                        <p>혼잡한 장소에서는 소지품을 가까이 두고, 긴급 상황 발생 시 112에 신고하세요.</p>
-                    </div>
-
-                    <ul>
-                        {selectedGuide.items.map((item) => (
-                            <li className="guide-item" key={`${selectedGuide.type}-${item.title}`}>
-                                <strong>{item.title}</strong>
-                                <p>{item.description}</p>
-                            </li>
+                <div className="guide-layout">
+                    <aside className="guide-tabs" aria-label="범죄 유형 선택">
+                        {guides.map((guide) => (
+                            <button 
+                                type="button"
+                                className={`guide-tab ${selectedGuideType === guide.type ? 'active' : ''}`}
+                                key={guide.type}
+                                onClick={() => handleSelectGuide(guide.type)}
+                            >
+                                <span>{guide.type}</span>
+                                <h3>{guide.title}</h3>
+                                <p>{guide.description}</p>
+                            </button>
                         ))}
-                    </ul>
+                    </aside>
+                    
+                    <div className="guide-content-panel">
+                        {isDetailLoading && (
+                            <p className="status-message">예방 가이드 상세 정보를 불러오는 중입니다.</p>
+                        )}
 
-                    <div className="emergency-box">
-                        <strong>긴급 상황</strong>
-                        <p>위험 상황에서는 즉시 112에 신고하고, 가까운 경찰서나 지구대로 이동하세요.</p>
+                        {detailErrorMessage && (
+                            <p className="status-message error">{detailErrorMessage}</p>
+                        )}
+
+                        {selectedGuide && !isDetailLoading && (
+                            <article className="guide-detail">
+                                <h3>{selectedGuide.title}</h3>
+                                <p>{selectedGuide.description}</p>
+
+                                <div className="guide-tip-banner">
+                                    <strong>여행 전 확인하세요.</strong>
+                                    <p>혼잡한 장소에서는 소지품을 가까이 두고, 긴급 상황 발생 시 112에 신고하세요.</p>
+                                </div>
+
+                                <ul>
+                                    {selectedGuide.items.map((item) => (
+                                        <li className="guide-item" key={`${selectedGuide.type}-${item.title}`}>
+                                            <strong>{item.title}</strong>
+                                            <p>{item.description}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <div className="emergency-box">
+                                    <strong>긴급 상황</strong>
+                                    <p>위험 상황에서는 즉시 112에 신고하고, 가까운 경찰서나 지구대로 이동하세요.</p>
+                                </div>
+                            </article>
+                        )}
                     </div>
-                </article>
+                </div>
             )}
         </section>
     )

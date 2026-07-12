@@ -8,19 +8,28 @@
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
-.guide-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.guide-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 22px;
   margin-top: 24px;
+  align-items: start;
+}
+
+.guide-tabs {
+  display: grid;
+  gap: 8px;
+  margin-top: 0;
 }
 
 .guide-tab {
+  width: 100%;
+  min-height: 52px;
   border: 0;
-  border-radius: 12px;
-  padding: 12px 16px;
+  border-radius: 10px;
+  padding: 10px 16px;
   color: #475569;
-  background: #f8fafc;
+  background: #ffffff;
   font-weight: 800;
   text-align: left;
   cursor: pointer;
@@ -36,7 +45,10 @@
   background: #062b5f;
 }
 
-.guide-tab span,
+.guide-tab span {
+  display: none;
+}
+
 .guide-tab p,
 .guide-tab ul {
   display: none;
@@ -47,20 +59,12 @@
   font-size: 14px;
 }
 
-.guide-detail {
-  margin-top: 24px;
-  padding: 28px;
-  border-radius: 18px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+.guide-content-panel {
+  min-width: 0;
 }
 
-.guide-detail span {
-  display: inline-block;
-  margin-bottom: 12px;
-  font-size: 13px;
-  font-weight: 800;
-  color: #2563eb;
+.guide-detail {
+  margin-top: 0;
 }
 
 .guide-detail h3 {
@@ -146,5 +150,13 @@
 @media (max-width: 768px) {
   .guide-tabs {
     width: 100%;
+  }
+
+  .guide-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-tabs {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
