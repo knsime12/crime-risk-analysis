@@ -1,4 +1,3 @@
-import './App.css'
 import RegionSearch from './components/RegionSearch'
 
 import { useState } from 'react'
