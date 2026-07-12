@@ -17,10 +17,11 @@
 }
 
 .logo,
-.nav-menu button {
+.nav-menu a {
   border: 0;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo {
@@ -49,15 +50,17 @@
   height: 100%;
 }
 
-.nav-menu button {
+.nav-menu a {
   height: 100%;
+  display: flex;
+  align-items: center;
   color: rgba(255, 255, 255, 0.86);
   font-size: 15px;
   font-weight: 800;
 }
 
-.nav-menu button:hover,
-.nav-menu button.active {
+.nav-menu a:hover,
+.nav-menu a.active {
   color: white;
 }
 

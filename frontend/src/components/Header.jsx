@@ -1,23 +1,19 @@
-export default function Header({
-  onGoHome,
-  onGoRegionSearch,
-  onGoReport,
-  onGoMap,
-  onGoGuide,
-}) {
+import { NavLink } from 'react-router-dom'
+
+export default function Header() {
   return (
     <header className="navbar">
-      <button type="button" className="logo" onClick={onGoHome}>
+      <NavLink to="/" className="logo">
         <span className="logo-icon">✓</span>
         <span>SAFE TRIP</span>
-      </button>
+      </NavLink>
 
       <nav className="nav-menu">
-        <button type="button" className="active" onClick={onGoHome}>홈</button>
-        <button type="button" onClick={onGoRegionSearch}>지역 검색</button>
-        <button type="button" onClick={onGoReport}>안전 리포트</button>
-        <button type="button" onClick={onGoMap}>지도</button>
-        <button type="button" onClick={onGoGuide}>예방 가이드</button>
+        <NavLink to="/">홈</NavLink>
+        <NavLink to="/regions">지역 검색</NavLink>
+        <NavLink to="/reports">안전 리포트</NavLink>
+        <NavLink to="/map">지도</NavLink>
+        <NavLink to="/guides">예방 가이드</NavLink>
       </nav>
     </header>
   )

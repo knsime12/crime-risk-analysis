@@ -11,13 +11,7 @@ export default function RegionPage() {
 
   return (
     <main id="top" className="app">
-      <Header
-        onGoHome={() => navigate('/')}
-        onGoRegionSearch={() => navigate('/regions')}
-        onGoReport={() => navigate('/reports')}
-        onGoMap={() => navigate('/map')}
-        onGoGuide={() => navigate('/guides')}
-      />
+      <Header />
 
       <RegionSearch onSelectRegion={handleSelectRegion} />
     </main>

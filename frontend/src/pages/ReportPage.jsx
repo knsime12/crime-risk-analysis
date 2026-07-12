@@ -36,13 +36,7 @@ export default function ReportPage() {
 
   return (
     <main id="top" className="app">
-      <Header
-        onGoHome={() => navigate('/')}
-        onGoRegionSearch={() => navigate('/regions')}
-        onGoReport={() => navigate('/reports')}
-        onGoMap={() => navigate(regionId ? `/map/${regionId}` : '/map')}
-        onGoGuide={() => navigate('/guides')}
-      />
+      <Header />
 
       <ReportPreview
         report={report}

@@ -7,7 +7,6 @@ import MapPreview from '../components/MapPreview'
 
 export default function MapPage() {
   const { regionId } = useParams()
-  const navigate = useNavigate()
 
   const [mapData, setMapData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -36,13 +35,7 @@ export default function MapPage() {
 
   return (
     <main id="top" className="app">
-      <Header
-        onGoHome={() => navigate('/')}
-        onGoRegionSearch={() => navigate('/regions')}
-        onGoReport={() => navigate(regionId ? `/reports/${regionId}` : '/reports')}
-        onGoMap={() => navigate(regionId ? `/map/${regionId}` : '/map')}
-        onGoGuide={() => navigate('/guides')}
-      />
+      <Header />
 
       <MapPreview
         mapData={mapData}
