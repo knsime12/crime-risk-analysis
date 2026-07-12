@@ -1,5 +1,11 @@
+import { MapPinned } from 'lucide-react'
+
+import KakaoMap from './KakaoMap'
+
 export default function ReportPreview({ 
     report, 
+    mapData,
+    mapErrorMessage,
     isLoading, 
     errorMessage, 
     onSearchOtherRegion,
@@ -45,6 +51,48 @@ export default function ReportPreview({
 
     const riskScore = Math.round(report.risk_score)
     const riskScorePercent = Math.min(Math.max(riskScore, 0), 100)
+    
+    const safetyGrade = getSafetyGrade(riskScore)
+
+    function getSafetyGrade(score) {
+        if (score >= 80) {
+            return {
+                title: '매우 위험 단계',
+                badge: '위험도 매우 높음',
+                badgeClassName: 'danger',
+            }
+        }
+
+        if (score >= 60) {
+            return {
+                title: '위험 단계',
+                badge: '위험도 높음',
+                badgeClassName: 'warning',
+            }
+        }
+        
+        if (score >= 40) {
+            return {
+                title: '관심 단계',
+                badge: '위험도 보통',
+                badgeClassName: 'normal',
+            }
+        }
+
+        if (score >= 20) {
+            return {
+                title: '안전 단계',
+                badge: '위험도 낮음',
+                badgeClassName: 'safe',
+            }
+        }
+
+        return {
+            title: '안전 단계',
+            badge: '위험도 매우 낮음',
+            badgeClassName: 'safe',
+        }
+    }
 
     return (
         <>
@@ -65,22 +113,55 @@ export default function ReportPreview({
             </section>
 
             <section id="safety-report" className="report-preview">
-                <div className="report-grid">
+                <div className="report-main-grid">
                     <article
                         className="score-summary-card"
                         style={{ '--score-percent': `${riskScorePercent}%` }}
                     >
-                        <div className="score-circle">
-                            <strong>{riskScore}</strong>
-                            <span>점</span>
+                        <div className="score-card-top">
+                            <div className="score-circle">
+                                <strong>{riskScore}</strong>
+                                <span>점</span>
+                            </div>
+
+                            <div className="score-summary-text">
+                                <strong>{safetyGrade.title}</strong>
+                                <em className={`safety-badge ${safetyGrade.badgeClassName}`}>
+                                    {safetyGrade.badge}
+                                </em>
+                            </div> 
                         </div>
 
-                        <div className="score-summary-text">
-                            <span>위험도 점수</span>
-                            <strong>{report.region_type}</strong>
+                        <div className="region-type-box">
+                            <div className="region-type-heading">
+                                <span>지역 유형</span>
+                                <em>{report.region_type}</em>
+                            </div>
                         </div>
                     </article>
 
+                    <article className="report-map-card">
+                        <div className="report-card-heading">
+                            <div>
+                                <h3>치안 시설 지도</h3>
+                                <p>{report.sido} {report.sigungu} · 경찰서/지구대/파출소 위치</p>
+                            </div>
+                            <MapPinned size={22} strokeWidth={2.3} />
+                        </div>
+
+                        {mapData ? (
+                            <KakaoMap
+                                regionLabel={mapData.region_label}
+                                stations={mapData.police_stations}
+                            />
+                        ) : (
+                            <div className="report-map-empty">
+                                {mapErrorMessage || '지도 데이터를 준비 중입니다.'}
+                            </div>
+                        )}
+                    </article>
+                </div>
+                <div className="report-grid">
                     <article>
                         <span>총 범죄 건수</span>
                         <strong>{report.crime_count.toLocaleString()}건</strong>
