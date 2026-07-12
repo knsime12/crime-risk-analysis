@@ -18,6 +18,11 @@ function loadKakaoSdk(appKey) {
         script.async = true
 
         script.onload = () => {
+            if (!window.kakao?.maps) {
+                reject(new Error('카카오맵 SDK 객체를 찾을 수 없습니다.'))
+                return
+            }
+
             window.kakao.maps.load(() => resolve(window.kakao))
         }
 
@@ -100,7 +105,7 @@ export default function KakaoMap({ regionLabel, stations }) {
                 map.setBounds(bounds)
             } catch (error) {
                 console.error(error)
-                setErrorMessage('카카오맵을 불러오지 못했습니다.')
+                setErrorMessage('카카오맵을 불러오지 못했습니다. API 키와 Web 도메인 설정을 확인해주세요.')
             }
         }
 
