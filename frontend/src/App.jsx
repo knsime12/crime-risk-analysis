@@ -85,7 +85,7 @@ export default function App() {
       <Header
         onGoHome={() => scrollToSection('top')}
         onGoRegionSearch={() => {
-          scrollToSection('')
+          setRegionNotice('')
           scrollToSection('region-search')
         }}
         onGoReport={scrollToReportEntry}
@@ -95,7 +95,7 @@ export default function App() {
 
       <HomeSection
         onStartSearch={() => {
-          scrollToSection('')
+          setRegionNotice('')
           scrollToSection('region-search')
         }}
         onViewMap={scrollToMapEntry}
