@@ -1,7 +1,8 @@
-import RegionSearch from '../components/RegionSearch'
-
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { getRegionReport, getMapRegion } from '../api/client'
+import RegionSearch from '../components/RegionSearch'
 import ReportPreview from '../components/ReportPreview'
 import MapPreview from '../components/MapPreview'
 import GuidePreview from '../components/GuidePreview'
@@ -18,6 +19,8 @@ export default function HomePage() {
   const [isMapLoading, setIsMapLoading] = useState(false)
 
   const [regionNotice, setRegionNotice] = useState('')
+
+  const navigate = useNavigate()
 
   async function handleSelectRegion(regionId) {
     setIsReportLoading(true)
@@ -90,7 +93,7 @@ export default function HomePage() {
         }}
         onGoReport={scrollToReportEntry}
         onGoMap={scrollToMapEntry}
-        onGoGuide={() => scrollToSection('safety-guide')}
+        onGoGuide={() => navigate('/guides')}
       />
 
       <HomeSection
@@ -99,7 +102,7 @@ export default function HomePage() {
           scrollToSection('region-search')
         }}
         onViewMap={scrollToMapEntry}
-        onViewGuide={() => scrollToSection('safety-guide')}
+        onViewGuide={() => navigate('/guides')}
       />
 
       <RegionSearch 
