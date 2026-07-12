@@ -9,7 +9,7 @@ export default function Header() {
       </NavLink>
 
       <nav className="nav-menu">
-        <NavLink to="/">홈</NavLink>
+        <NavLink to="/" end>홈</NavLink>
         <NavLink to="/regions">지역 검색</NavLink>
         <NavLink to="/reports">안전 리포트</NavLink>
         <NavLink to="/map">지도</NavLink>
