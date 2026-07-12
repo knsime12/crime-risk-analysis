@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import HomePage from './pages/HomePage'
 import RegionPage from './pages/RegionPage'
+import ReportPage from './pages/ReportPage'
 import GuidePage from './pages/GuidePage'
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/regions" element={<RegionPage />} />
+      <Route path="/reports/:regionId" element={<ReportPage />} />
       <Route path="/guides" element={<GuidePage />} />
     </Routes>
   )
