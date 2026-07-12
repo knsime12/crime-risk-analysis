@@ -50,3 +50,5 @@ Desktop.ini
 .DS_Store
 
 backend/data/*.db
+
+reference
