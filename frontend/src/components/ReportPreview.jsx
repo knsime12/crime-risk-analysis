@@ -1,4 +1,11 @@
-export default function ReportPreview({ report, isLoading, errorMessage, onViewMap, onViewGuide }) {
+export default function ReportPreview({ 
+    report, 
+    isLoading, 
+    errorMessage, 
+    onSearchOtherRegion,
+    onViewMap, 
+    onViewGuide,
+}) {
     if (isLoading) {
         return (
             <section id="safety-report" className="report-preview empty">
@@ -40,86 +47,96 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
     const riskScorePercent = Math.min(Math.max(riskScore, 0), 100)
 
     return (
-        <section id="safety-report" className="report-preview">
-            <div className="section-heading">
-                <p className="eyebrow">SAFETY REPORT</p>
-                <h2>
-                    {report.sido} {report.sigungu} 안전 리포트
-                </h2>
-                <p>{report.region_type}</p>
-            </div>
-
-            <div className="report-grid">
-                <article
-                    className="score-summary-card"
-                    style={{ '--score-percent': `${riskScorePercent}%` }}
-                >
-                    <div className="score-circle">
-                        <strong>{riskScore}</strong>
-                        <span>점</span>
-                    </div>
-
-                    <div className="score-summary-text">
-                        <span>위험도 점수</span>
-                        <strong>{report.region_type}</strong>
-                    </div>
-                </article>
-
-                <article>
-                    <span>총 범죄 건수</span>
-                    <strong>{report.crime_count.toLocaleString()}건</strong>
-                </article>
-
-                <article>
-                    <span>CCTV</span>
-                    <strong>{report.infra.cctv_count.toLocaleString()}대</strong>
-                </article>
-
-                <article>
-                    <span>경찰서</span>
-                    <strong>{report.infra.police_station_count.toLocaleString()}곳</strong>
-                </article>
-
-                <article>
-                    <span>지구대 · 파출소</span>
-                    <strong>{report.infra.police_box_count.toLocaleString()}곳</strong>
-                </article>
-            </div>
-
-            <div className="crime-ratio-list">
-                <h3>주요 범죄 유형</h3>
-                
-                <div className="crime-pill-list">
-                    {majorCrimeTypes.map((crime) => (
-                        <span key={crime}>{crime}</span>
-                    ))}
+        <>
+            <section className="report-hero">
+                <div className="section-heading">
+                    <p className="eyebrow">SAFETY REPORT</p>
+                    <h2>
+                        {report.sido} {report.sigungu} 안전 리포트
+                    </h2>
+                    <p>
+                        {report.sido} {report.sigungu}의 범죄 현황, CCTV 위치, 치안시설 데이터를 기반으로 여행지 안전 정보를 제공합니다.
+                    </p>
                 </div>
 
-                <div className="crime-ratio-bars">
-                    {crimeRatioItems.map((item) => (
-                        <div className="crime-ratio-item" key={item.label}>
-                            <div>
-                                <span>{item.label}</span>
-                                <strong>{item.value.toFixed(1)}%</strong>
-                            </div>
+                <button type="button" onClick={onSearchOtherRegion}>
+                    다른 지역 검색
+                </button>
+            </section>
 
-                            <div className="crime-ratio-track">
-                                <i style={{ width: `${Math.min(item.value, 100)}%` }} />
-                            </div>
+            <section id="safety-report" className="report-preview">
+                <div className="report-grid">
+                    <article
+                        className="score-summary-card"
+                        style={{ '--score-percent': `${riskScorePercent}%` }}
+                    >
+                        <div className="score-circle">
+                            <strong>{riskScore}</strong>
+                            <span>점</span>
                         </div>
-                    ))}
+
+                        <div className="score-summary-text">
+                            <span>위험도 점수</span>
+                            <strong>{report.region_type}</strong>
+                        </div>
+                    </article>
+
+                    <article>
+                        <span>총 범죄 건수</span>
+                        <strong>{report.crime_count.toLocaleString()}건</strong>
+                    </article>
+
+                    <article>
+                        <span>CCTV</span>
+                        <strong>{report.infra.cctv_count.toLocaleString()}대</strong>
+                    </article>
+
+                    <article>
+                        <span>경찰서</span>
+                        <strong>{report.infra.police_station_count.toLocaleString()}곳</strong>
+                    </article>
+
+                    <article>
+                        <span>지구대 · 파출소</span>
+                        <strong>{report.infra.police_box_count.toLocaleString()}곳</strong>
+                    </article>
                 </div>
-            </div>
 
-            <div className="report-actions">
-                <button type="button" onClick={onViewMap}>
-                    지도에서 보기
-                </button>
+                <div className="crime-ratio-list">
+                    <h3>주요 범죄 유형</h3>
+                    
+                    <div className="crime-pill-list">
+                        {majorCrimeTypes.map((crime) => (
+                            <span key={crime}>{crime}</span>
+                        ))}
+                    </div>
 
-                <button type="button" className="secondary-action" onClick={onViewGuide}>
-                    예방 가이드 보기
-                </button>
-            </div>
-        </section>
+                    <div className="crime-ratio-bars">
+                        {crimeRatioItems.map((item) => (
+                            <div className="crime-ratio-item" key={item.label}>
+                                <div>
+                                    <span>{item.label}</span>
+                                    <strong>{item.value.toFixed(1)}%</strong>
+                                </div>
+
+                                <div className="crime-ratio-track">
+                                    <i style={{ width: `${Math.min(item.value, 100)}%` }} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="report-actions">
+                    <button type="button" onClick={onViewMap}>
+                        지도에서 보기
+                    </button>
+
+                    <button type="button" className="secondary-action" onClick={onViewGuide}>
+                        예방 가이드 보기
+                    </button>
+                </div>
+            </section>
+        </>
     )
 }
