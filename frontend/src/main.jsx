@@ -6,6 +6,7 @@ import './styles/home.css'
 import './styles/region.css'
 import './styles/common.css'
 import './styles/report.css'
+import './styles/map.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
