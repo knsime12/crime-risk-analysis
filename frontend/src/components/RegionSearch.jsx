@@ -62,39 +62,40 @@ export default function RegionSearch({ onSelectRegion }) {
     return (
         <>
             <section id="region-search" className="region-search-section">
-                <div className="section-heading">
-                    <p className="eyebrow">REGION SEARCH</p>
-                    <h2>어디로 떠나시나요?</h2>
-                    <p>
-                        여행지를 검색하면 범죄 현황, 경찰 시설, 예방 수칙이 담긴 안전 리포트를 확인할 수 있습니다.
-                    </p>
+                <div className="region-hero-inner">
+                    <div className="section-heading">
+                        <p className="eyebrow">REGION SEARCH</p>
+                        <h2>어디로 떠나시나요?</h2>
+                        <p>
+                            여행지를 검색하면 범죄 현황, 경찰 시설, 예방 수칙이 담긴 안전 리포트를 확인할 수 있습니다.
+                        </p>
+                    </div>
+
+                    <form className="region-search-form" onSubmit={handleSearch}>
+                        <input
+                            value={keyword}
+                            onChange={(event) => setKeyword(event.target.value)}
+                            placeholder="예: 서울, 종로구, 제주"
+                        />
+                        <button type="submit">검색</button>
+                    </form>
+
+                    <div className="region-keywords">
+                        <span>인기 검색어</span>
+                        {['제주', '부산', '강릉', '서울', '경주'].map((item) => (
+                            <button
+                                type="button"
+                                key={item}
+                                onClick={() => handleKeywordClick(item)}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
+
+                    {isLoading && <p className="status-message">지역 데이터를 불러오는 중입니다.</p>}
+                    {errorMessage && <p className="status-message error">{errorMessage}</p>}
                 </div>
-
-                <form className="region-search-form" onSubmit={handleSearch}>
-                    <input
-                        value={keyword}
-                        onChange={(event) => setKeyword(event.target.value)}
-                        placeholder="예: 서울, 종로구, 제주"
-                    />
-                    <button type="submit">검색</button>
-                </form>
-
-                <div className="region-keywords">
-                    <span>인기 검색어</span>
-                    {['제주', '부산', '강릉', '서울', '경주'].map((item) => (
-                        <button
-                            type="button"
-                            key={item}
-                            onClick={() => handleKeywordClick(item)}
-                        >
-                            {item}
-                        </button>
-                    ))}
-                </div>
-
-                {isLoading && <p className="status-message">지역 데이터를 불러오는 중입니다.</p>}
-                {errorMessage && <p className="status-message error">{errorMessage}</p>}
-
             </section>
 
             {!isLoading && !errorMessage && regions.length === 0 && (
