@@ -16,6 +16,7 @@ export default function App() {
       <Route path="/map" element={<Navigate to="/regions" replace />} />
       <Route path="/map/:regionId" element={<MapPage />} />
       <Route path="/guides" element={<GuidePage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
