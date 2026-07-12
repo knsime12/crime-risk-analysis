@@ -5,7 +5,6 @@ import { getRegionReport, getMapRegion } from '../api/client'
 import RegionSearch from '../components/RegionSearch'
 import ReportPreview from '../components/ReportPreview'
 import MapPreview from '../components/MapPreview'
-import GuidePreview from '../components/GuidePreview'
 import HomeSection from '../components/HomeSection'
 import Header from '../components/Header'
 
@@ -115,7 +114,7 @@ export default function HomePage() {
         isLoading={isReportLoading}
         errorMessage={reportError}
         onViewMap={() => scrollToSection('safety-map')}
-        onViewGuide={() => scrollToSection('safety-guide')}
+        onViewGuide={() => navigate('/guides')}
       />
 
       {(mapData || isMapLoading || mapError) && (
@@ -125,8 +124,6 @@ export default function HomePage() {
           errorMessage={mapError}
         />
       )}
-
-      <GuidePreview />
 
     </main>
   )
