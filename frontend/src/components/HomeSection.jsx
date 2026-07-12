@@ -1,24 +1,49 @@
+import travelImage from '../assets/travel.png'
+
 export default function HomeSection({ onStartSearch, onViewMap, onViewGuide }) {
   return (
     <>
       <section className="hero-section">
-        <p className="eyebrow">여행지 안전정보 플랫폼</p>
-        <h1>
-          안전한 여행의 시작,<br />
-          <span>SafeTrip</span>
-        </h1>
-        <p className="hero-description">
-          여행지를 검색하고 지역별 범죄 현황, 경찰 시설 정보와 예방 수칙을 한눈에 확인하세요.
-        </p>
+        <div className="hero-text">
+          <p className="eyebrow">여행지 안전정보 플랫폼</p>
+          <h1>
+            안전한 여행의 시작,<br />
+            <span>SafeTrip</span>
+          </h1>
+          <p className="hero-description">
+            여행지를 검색하고 지역별 범죄 현황, 경찰 시설 정보와 예방 수칙을 한눈에 확인하세요.
+          </p>
 
-        <div className="hero-actions">
-          <button type="button" className="primary-button" onClick={onStartSearch}>
-            지역 검색 시작
-          </button>
+          <div className="hero-actions">
+            <button type="button" className="primary-button" onClick={onStartSearch}>
+              지역 검색 시작
+            </button>
 
-          <button type="button" className="secondary-button" onClick={onStartSearch}>
-            안전 리포트 보기
-          </button>
+            <button type="button" className="secondary-button" onClick={onStartSearch}>
+              안전 리포트 보기
+            </button>
+          </div>
+
+          <div className="quick-info">
+            <div>
+              <strong>지역별</strong>
+              <span>범죄 현황 분석</span>
+            </div>
+
+            <div>
+              <strong>지도 기반</strong>
+              <span>경찰 시설 위치</span>
+            </div>
+
+            <div>
+              <strong>맞춤형</strong>
+              <span>예방 수칙 제공</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-visual">
+            <img src={travelImage} alt="여행 일러스트" />
         </div>
       </section>
 
