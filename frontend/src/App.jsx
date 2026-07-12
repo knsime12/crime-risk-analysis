@@ -61,7 +61,13 @@ export default function App() {
   }
 
   function scrollToReportEntry() {
-    scrollToSection(selectedReport ? 'safety-report' : 'region-search')
+    if (selectedReport) {
+      scrollToSection('safety-report')
+      return
+    }
+
+    setRegionNotice('안전 리포트를 보려면 먼저 지역을 선택해 주세요.')
+    scrollToSection('region-search')
   }
 
   function scrollToMapEntry() {
@@ -78,14 +84,20 @@ export default function App() {
     <main id="top" className="app">
       <Header
         onGoHome={() => scrollToSection('top')}
-        onGoRegionSearch={() => scrollToSection('region-search')}
+        onGoRegionSearch={() => {
+          scrollToSection('')
+          scrollToSection('region-search')
+        }}
         onGoReport={scrollToReportEntry}
         onGoMap={scrollToMapEntry}
         onGoGuide={() => scrollToSection('safety-guide')}
       />
 
       <HomeSection
-        onStartSearch={() => scrollToSection('region-search')}
+        onStartSearch={() => {
+          scrollToSection('')
+          scrollToSection('region-search')
+        }}
         onViewMap={scrollToMapEntry}
         onViewGuide={() => scrollToSection('safety-guide')}
       />
