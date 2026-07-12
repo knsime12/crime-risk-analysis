@@ -36,6 +36,9 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
         { label: '살인', value: report.crime_ratios.murder },
     ]
 
+    const riskScore = Math.round(report.risk_score)
+    const riskScorePercent = Math.min(Math.max(riskScore, 0), 100)
+
     return (
         <section id="safety-report" className="report-preview">
             <div className="section-heading">
@@ -47,9 +50,19 @@ export default function ReportPreview({ report, isLoading, errorMessage, onViewM
             </div>
 
             <div className="report-grid">
-                <article>
-                    <span>위험도 점수</span>
-                    <strong>{Math.round(report.risk_score)}점</strong>
+                <article
+                    className="score-summary-card"
+                    style={{ '--score-percent': `${riskScorePercent}%` }}
+                >
+                    <div className="score-circle">
+                        <strong>{riskScore}</strong>
+                        <span>점</span>
+                    </div>
+
+                    <div className="score-summary-text">
+                        <span>위험도 점수</span>
+                        <strong>{report.region_type}</strong>
+                    </div>
                 </article>
 
                 <article>
