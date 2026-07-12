@@ -86,20 +86,14 @@ export default function HomePage() {
     <main id="top" className="app">
       <Header
         onGoHome={() => scrollToSection('top')}
-        onGoRegionSearch={() => {
-          setRegionNotice('')
-          scrollToSection('region-search')
-        }}
+        onGoRegionSearch={() => navigate('/regions')}
         onGoReport={scrollToReportEntry}
         onGoMap={scrollToMapEntry}
         onGoGuide={() => navigate('/guides')}
       />
 
       <HomeSection
-        onStartSearch={() => {
-          setRegionNotice('')
-          scrollToSection('region-search')
-        }}
+        onStartSearch={() => navigate('/regions')}
         onViewMap={scrollToMapEntry}
         onViewGuide={() => navigate('/guides')}
       />
