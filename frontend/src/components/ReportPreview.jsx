@@ -54,46 +54,6 @@ export default function ReportPreview({
     
     const safetyGrade = getSafetyGrade(riskScore)
 
-    function getSafetyGrade(score) {
-        if (score >= 80) {
-            return {
-                title: '매우 위험 단계',
-                badge: '위험도 매우 높음',
-                badgeClassName: 'danger',
-            }
-        }
-
-        if (score >= 60) {
-            return {
-                title: '위험 단계',
-                badge: '위험도 높음',
-                badgeClassName: 'warning',
-            }
-        }
-        
-        if (score >= 40) {
-            return {
-                title: '관심 단계',
-                badge: '위험도 보통',
-                badgeClassName: 'normal',
-            }
-        }
-
-        if (score >= 20) {
-            return {
-                title: '안전 단계',
-                badge: '위험도 낮음',
-                badgeClassName: 'safe',
-            }
-        }
-
-        return {
-            title: '안전 단계',
-            badge: '위험도 매우 낮음',
-            badgeClassName: 'safe',
-        }
-    }
-
     return (
         <>
             <section className="report-hero">
@@ -220,4 +180,44 @@ export default function ReportPreview({
             </section>
         </>
     )
+}
+
+function getSafetyGrade(score) {
+    if (score >= 80) {
+        return {
+            title: '매우 위험 단계',
+            badge: '위험도 매우 높음',
+            badgeClassName: 'danger',
+        }
+    }
+
+    if (score >= 60) {
+        return {
+            title: '위험 단계',
+            badge: '위험도 높음',
+            badgeClassName: 'warning',
+        }
+    }
+
+    if (score >= 40) {
+        return {
+            title: '관심 단계',
+            badge: '위험도 보통',
+            badgeClassName: 'normal',
+        }
+    }
+
+    if (score >= 20) {
+        return {
+            title: '안전 단계',
+            badge: '위험도 낮음',
+            badgeClassName: 'safe',
+        }
+    }
+
+    return {
+        title: '안전 단계',
+        badge: '위험도 매우 낮음',
+        badgeClassName: 'safe',
+    }
 }
