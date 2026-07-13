@@ -1,8 +1,8 @@
-# SafeTrip - 범죄 위험도 분석 플랫폼
+# SAFE TRIP - 범죄 위험도 기반 여행 안전 웹서비스
 
-Crime risk analysis and regional safety analysis platform
+기존 SAFE TRIP 팀프로젝트의 UI/UX를 참고하여 React + FastAPI 기반으로 재구현한 여행 안전 정보 웹서비스입니다.
 
-전국 범죄 발생 데이터와 치안 인프라 데이터를 활용하여 지역별 위험도를 분석하고 군집화하는 데이터 기반 범죄 위험도 분석 플랫폼 입니다.
+지역별 범죄 위험도, 주요 범죄 유형, CCTV 및 경찰 시설 정보를 기반으로 여행지 안전 리포트와 지도 시각화, 예방 가이드를 제공합니다.
 
 ---
 
@@ -11,25 +11,6 @@ Crime risk analysis and regional safety analysis platform
 범죄 발생 현황과 CCTV, 경찰 인프라 정보를 결합하여 지역별 위험도를 정량적으로 평가하였습니다.
 
 또한 K-Means 군집화를 활용하여 지역 특성을 분류하고, 분석 결과를 백엔드에서 활용할 수 있도록 데이터를 생성 하였습니다.
-
----
-
-## 프로젝트 기간
-
-2026.05.18 ~ 2026.05.22
-
-## 프로젝트 인원
-
-5명
-
-## 담당 역할
-
-- 범죄 데이터 전처리
-- 위험도 점수 산출 로직 설계
-- 범죄 유형 분석
-- K-Means 군집화
-- 실루엣 점수 평가
-- 백엔드 전달용 데이터 생성
 
 ---
 
@@ -51,22 +32,23 @@ Crime risk analysis and regional safety analysis platform
 
 ---
 
-## 사용 기술
+## 기술 스택
 
-### Language
+### Backend
 
-- Python
+- Python 3.12
+- FastAPI
+- SQLAlchemy
+- SQLite
 
-### Data Processing
+### Frontend
 
-- Pandas
-- NumPy
-
-### Machine Learning
-
-- K-Means Clustering
-- StandardScaler
-- MinMaxScaler
+- React
+- Vite
+- JavaScript
+- React Router
+- Kakao Map JavaScript API
+- Lucide React
 
 ---
 
@@ -92,59 +74,13 @@ K-Means 군집화
 
 ## 주요 기능
 
-### 1. 지역별 위험도 분석
+- 홈 화면
+- 지역 검색
+- 지역별 안전 리포트
+- 카카오맵 기반 치안 시설 지도
+- 범죄 유형별 예방 가이드
 
-범죄 발생 건수와 치안 인프라 정보를 기반으로 지역별 위험도를 계산합니다.
-
-### 위험도 산출 요소
-
-- 범죄 발생 건수
-- CCTV 수
-- 인프라 수
-
-### 2. 범죄 유형 분석
-
-범죄 유형별 비율을 계산하여 지역별 주요 범죄 유형을 도출합니다.
-
-### 분석 대상
-
-- 절도
-- 폭력
-- 성범죄
-- 강도
-- 살인
-
-### 3. 지역 군집화
-
-K-Means 알고리즘을 활용하여 지역을 3개 군집으로 분류하였습니다.
-
-### 군집 유형
-
-- 범죄 집중 관리 지역
-- 생활 안전 지역
-- 치안 인프라 보완 필요 지역
-
-### 4. 분석 결과 생성
-
-다음 정보를 포함한 결과 데이터를 생성하여 백엔드에서 활용할 수 있도록 제공 하였습니다.
-
-- 위험도 점수
-- 위험 등급
-- 주요 범죄 유형
-- 군집 결과
-
----
-
-## 위험도 산출 방식
-
-```Python
-risk_score = (
-  crime_score * 0.95 
-  - CCTV_score * 0.03
-  - infra_score * 0.02
-)
-```
-범죄 발생 비중을 가장 높게 반영하고 CCTV 및 치안 인프라 정보를 보조 지표로 활용하여 위험도를 산출하였습니다.
+※ 현재 MVP에서는 회원가입/로그인, 신고 게시판 기능은 제외했습니다.
 
 ---
 
@@ -167,6 +103,7 @@ risk_score = (
 ---
 
 ## 프로젝트 구조
+
 ```text
 crime-risk-analysis/
 ├── backend/
@@ -183,17 +120,17 @@ crime-risk-analysis/
 ├── frontend/
 │   ├── src/
 │   │   ├── api/
+│   │   ├── assets/
 │   │   ├── components/
+│   │   ├── pages/
+│   │   ├── styles/
 │   │   ├── App.jsx
-│   │   └── App.css
+│   │   └── main.jsx
 │   ├── .env.example
-│   └── package.json
+│   ├── package.json
+│   └── package-lock.json
 ├── legacy_ui/
-│   └── travel-safe-platform-main/
 ├── docs/
-│   └── feature_spec.md
-├── crime_analysis.py
-├── crime_raw_data.csv
 ├── requirements.txt
 └── README.md
 ```
@@ -211,7 +148,7 @@ crime-risk-analysis/
 
 ---
 
-## 웹서비스 실행 방법
+## 실행 방법
 
 ### 1. Python 가상환경 생성
 
@@ -232,13 +169,13 @@ python -m pip install -r requirements.txt
 python backend/scripts/seed_region.py
 ```
 
-생성되는 DB 파일:
+생성되는 DB 파일은 아래 경로에 저장됩니다.
 
 ```text
 backend/data/safe_trip.db
 ```
 
-※ 이 파일은 Git에 커밋하지 않습니다.
+※ 이 파일은 로컬 실행용이며 Git에 커밋하지 않습니다.
 
 ※ 모델 또는 seed 코드가 변경되었거나 지도 API `police_stations` 테이블 오류가 발생하면 seed를 다시 실행합니다.
 
@@ -254,7 +191,7 @@ repo 루트에서 실행합니다.
 uvicorn app.main:app --app-dir backend --reload
 ```
 
-확인 URL:
+API 문서:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -273,14 +210,6 @@ npm run dev
 
 ```text
 http://localhost:5173
-```
-
-### 6. 프론트엔드 검사
-
-```powershell
-cd frontend
-npm run lint
-npm run build
 ```
 
 ### 환경변수
@@ -314,8 +243,9 @@ npm run dev
 
 ## 향후 개선 사항
 
-- 실시간 범죄 데이터 연동
-- 범죄 발생 예측 모델 개발
-- 연도별 범죄 추세 분석 기능 추가
-- 사용자 맞춤형 안전 리포트 제공
-- 서비스 기능 고도화
+- OpenAI API 기반 지역별 안전 리포트 요약 생성
+- 위험도 등급 계산 로직 백엔드 이전
+- MySQL 또는 PostgreSQL 전환
+- 지도 필터 기능 고도화
+- 테스트 코드 추가
+- 배포 환경 구성
