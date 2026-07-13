@@ -49,10 +49,6 @@ export default function MapPreview({
         }
     }
 
-    const stations = mapData ? mapData.police_stations.slice(0, 5) : []
-    const remainingStationCount = mapData ? mapData.police_stations.length - stations.length : 0
-    const hasStations = mapData ? mapData.police_stations.length > 0 : false
-
     return (
         <>
             <section className="map-hero">
@@ -133,39 +129,6 @@ export default function MapPreview({
                     ) : (
                         <div className="map-empty-panel">
                             왼쪽에서 지역을 선택하면 치안 시설 지도가 표시됩니다.
-                        </div>
-                    )}
-
-                    {mapData && (
-                        <div className="station-list">
-                            {hasStations ? (
-                                <>
-                                    <p className="station-list-summary">
-                                        대표 치안 시설 {stations.length}곳
-                                        {remainingStationCount > 0 && ` · 외 ${remainingStationCount}곳`}
-                                    </p>
-
-                                    {stations.map((station) => (
-                                        <article
-                                            className="station-card"
-                                            key={`${station.type}-${station.name}-${station.latitude}-${station.longitude}`}
-                                        >
-                                            <div>
-                                                <h3>{station.name}</h3>
-                                                <p>{station.type}</p>
-                                            </div>
-
-                                            <span title={`${station.latitude.toFixed(4)}, ${station.longitude.toFixed(4)}`}>
-                                                지도 마커 표시
-                                            </span>
-                                        </article>
-                                    ))}
-                                </>
-                            ) : (
-                                <p className="status-message">
-                                    표시할 치안 시설 좌표가 없습니다.
-                                </p>
-                            )}
                         </div>
                     )}
                 </section>
