@@ -1,3 +1,121 @@
+.map-hero {
+  max-width: 1280px;
+  margin: 32px auto 0;
+  padding: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.map-layout {
+  max-width: 1280px;
+  margin: 16px auto 0;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.map-sidebar {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.map-sidebar-card {
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.map-sidebar-card h3 {
+  margin: 0 0 16px;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.map-sidebar-card strong {
+  display: block;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.map-sidebar-card p {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.map-canvas-panel {
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.map-canvas-panel .kakao-map,
+.map-canvas-panel .kakao-map-placeholder {
+  min-height: 460px;
+  margin-top: 0;
+  border-radius: 16px;
+}
+
+.map-region-summary {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+}
+
+.map-region-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.map-region-summary dt {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.map-region-summary dd {
+  margin: 0;
+  color: #062b5f;
+  font-weight: 900;
+}
+
+.map-select-group {
+  display: grid;
+  gap: 10px;
+}
+
+.map-select-group select {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #dbe3ef;
+  border-radius: 8px;
+  padding: 0 10px;
+  color: #0f172a;
+  background: #ffffff;
+  outline: none;
+}
+
+.map-select-group select:disabled {
+  color: #94a3b8;
+  background: #f8fafc;
+}
+
+.map-empty-panel {
+  min-height: 560px;
+  display: grid;
+  place-items: center;
+  color: #64748b;
+  font-weight: 700;
+  background: #f8fafc;
+}
+
 .map-preview {
   max-width: 960px;
   margin: 32px auto 0;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { getMapRegion } from '../api/client'
+import { getMapRegion, getRegions } from '../api/client'
 import Header from '../components/Header'
 import MapPreview from '../components/MapPreview'
 
@@ -11,6 +11,9 @@ export default function MapPage() {
   const [mapData, setMapData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
+
+  const navigate = useNavigate()
+  const [regions, setRegions] = useState()
 
   useEffect(() => {
     async function loadMapData() {
@@ -33,14 +36,30 @@ export default function MapPage() {
     }
   }, [regionId])
 
+  useEffect(() => {
+    async function loadRegions() {
+      try {
+        const data = await getRegions()
+        setRegions(data)
+      } catch {
+        setRegions([])
+      }
+    }
+
+    loadRegions()
+  }, [])
+
   return (
     <main id="top" className="app">
       <Header />
 
       <MapPreview
         mapData={mapData}
-        isLoading={isLoading}
-        errorMessage={errorMessage}
+        regions={regions}
+        selectedRegionId={regionId}
+        isLoading={regionId ? isLoading : false}
+        errorMessage={regionId ? errorMessage : ''}
+        onSelectRegion={(nextRegionId) => navigate(`/map/${nextRegionId}`)}
       />
     </main>
   )
