@@ -13,7 +13,7 @@ export default function MapPage() {
   const [errorMessage, setErrorMessage] = useState('')
 
   const navigate = useNavigate()
-  const [regions, setRegions] = useState()
+  const [regions, setRegions] = useState([])
 
   useEffect(() => {
     async function loadMapData() {
@@ -54,7 +54,7 @@ export default function MapPage() {
       <Header />
 
       <MapPreview
-        mapData={mapData}
+        mapData={regionId ? mapData : null}
         regions={regions}
         selectedRegionId={regionId}
         isLoading={regionId ? isLoading : false}
